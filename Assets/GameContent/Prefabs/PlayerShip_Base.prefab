@@ -189,6 +189,7 @@ MonoBehaviour:
   maxRotationSpeed: 100
   velocityDrag: 1
   rotationDrag: 2
+  useMouseAim: 1
 --- !u!114 &641656006138452306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,11 +214,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7420800078715354900}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 1289ae5e152697749ade081380850158,
-        type: 3}
-      propertyPath: m_Name
-      value: playerShip_one
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1289ae5e152697749ade081380850158,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -272,6 +268,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 1289ae5e152697749ade081380850158,
+        type: 3}
+      propertyPath: m_Name
+      value: playerShip_one
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1289ae5e152697749ade081380850158, type: 3}

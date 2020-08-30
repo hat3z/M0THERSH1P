@@ -15,6 +15,9 @@ public class MS_PlayerShipController : MonoBehaviour
 
     private Vector3 velocity;
     private float zRotationVelocity;
+    private Vector3 mousePos;
+
+    public bool useMouseAim;
 
     private void Update()
     {
@@ -23,7 +26,7 @@ public class MS_PlayerShipController : MonoBehaviour
         velocity += acceleration * Time.deltaTime;
 
         // apply turn input
-        float zTurnAcceleration = -1 * Input.GetAxis("Horizontal") * horizontalInputAcceleration;
+        float zTurnAcceleration = -1 * Input.GetAxis("Horizontal") * horizontalInputAcceleration ;
         zRotationVelocity += zTurnAcceleration * Time.deltaTime;
     }
 
@@ -43,6 +46,19 @@ public class MS_PlayerShipController : MonoBehaviour
 
         // update transform
         transform.position += velocity * Time.deltaTime;
-        transform.Rotate(0, 0, zRotationVelocity * Time.deltaTime);
+
+        if (useMouseAim)
+        {
+            mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
+            Vector3 lookPos = Camera.main.ScreenToWorldPoint(mousePos);
+            lookPos = lookPos - transform.position;
+            float angle = Mathf.Atan2(lookPos.y, lookPos.x) * Mathf.Rad2Deg - 90;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+
+        else
+        {
+            transform.Rotate(0, 0, zRotationVelocity * Time.deltaTime);
+        }
     }
 }
