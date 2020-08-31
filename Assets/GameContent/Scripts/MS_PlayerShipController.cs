@@ -19,6 +19,21 @@ public class MS_PlayerShipController : MonoBehaviour
 
     public bool useMouseAim;
 
+    // DASH SETTINGS
+    public float dashForce;
+    public float dashCooldown;
+    private float dashCDCounter;
+    bool canUseDash;
+    Rigidbody rb;
+
+    private void Start()
+    {
+
+        rb = GetComponent<Rigidbody>();
+        dashCDCounter = dashCooldown;
+        canUseDash = true;
+    }
+
     private void Update()
     {
         // apply forward input
@@ -26,8 +41,10 @@ public class MS_PlayerShipController : MonoBehaviour
         velocity += acceleration * Time.deltaTime;
 
         // apply turn input
-        float zTurnAcceleration = -1 * Input.GetAxis("Horizontal") * horizontalInputAcceleration ;
-        zRotationVelocity += zTurnAcceleration * Time.deltaTime;
+        //float zTurnAcceleration = -1 * Input.GetAxis("Horizontal") * horizontalInputAcceleration ;
+        //zRotationVelocity += zTurnAcceleration * Time.deltaTime;
+
+
     }
 
     private void FixedUpdate()
@@ -60,5 +77,37 @@ public class MS_PlayerShipController : MonoBehaviour
         {
             transform.Rotate(0, 0, zRotationVelocity * Time.deltaTime);
         }
+
+        UseDash();
+
     }
+
+    void UseDash()
+    {
+        if(canUseDash)
+        {
+            if (Input.GetKey(KeyCode.D))
+            {
+                rb.AddForce(transform.right * dashForce, ForceMode.Impulse);
+
+                canUseDash = false;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                rb.AddForce(-transform.right * dashForce, ForceMode.Impulse);
+
+                canUseDash = false;
+            }
+        }
+        else
+        {
+            dashCDCounter -= Time.deltaTime;
+        }
+        if (dashCDCounter <= 0)
+        {
+            dashCDCounter = dashCooldown;
+            canUseDash = true;
+        }
+    }
+
 }
