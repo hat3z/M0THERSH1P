@@ -830,26 +830,6 @@ PrefabInstance:
       propertyPath: bulletPool
       value: 
       objectReference: {fileID: 1006993005}
-    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
-        type: 3}
-      propertyPath: verticalInputAcceleration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
-        type: 3}
-      propertyPath: maxRotationSpeed
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
-        type: 3}
-      propertyPath: rotationDrag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5222815758574090855, guid: a2dd1193371c9a7449daa846770fa256,
-        type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2dd1193371c9a7449daa846770fa256, type: 3}
 --- !u!1 &1169436558

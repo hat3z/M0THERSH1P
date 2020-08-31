@@ -4,40 +4,27 @@ using UnityEngine;
 
 public class MS_PlayerShipController : MonoBehaviour
 {
-    public float verticalInputAcceleration = 1;
-    public float horizontalInputAcceleration = 20;
-
-    public float maxSpeed = 10;
-    public float maxRotationSpeed = 100;
-
-    public float velocityDrag = 1;
-    public float rotationDrag = 1;
-
-    private Vector3 velocity;
-    private float zRotationVelocity;
-    private Vector3 mousePos;
-
-    public bool useMouseAim;
-
-    // DASH SETTINGS
-    public float dashForce;
-    public float dashCooldown;
+    [Header("Player Ship Control")]
+    public MS_PlayerProfile PlayerProfile;
     private float dashCDCounter;
-    bool canUseDash;
+    private float zRotationVelocity;
+
+    // privates
+    private Vector3 velocity;
+    private Vector3 mousePos;
     Rigidbody rb;
 
     private void Start()
     {
 
         rb = GetComponent<Rigidbody>();
-        dashCDCounter = dashCooldown;
-        canUseDash = true;
-    }
+        dashCDCounter = PlayerProfile.ShipControl.dashCooldown;
+}
 
     private void Update()
     {
         // apply forward input
-        Vector3 acceleration = Input.GetAxis("Vertical") * verticalInputAcceleration * transform.up;
+        Vector3 acceleration = Input.GetAxis("Vertical") * PlayerProfile.ShipControl.verticalInputAcceleration * transform.up;
         velocity += acceleration * Time.deltaTime;
 
         // apply turn input
@@ -49,22 +36,30 @@ public class MS_PlayerShipController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        ShipControl();
+        UseDash();
+
+    }
+
+    void ShipControl()
+    {
         // apply velocity drag
-        velocity = velocity * (1 - Time.deltaTime * velocityDrag);
+        velocity = velocity * (1 - Time.deltaTime * PlayerProfile.ShipControl.velocityDrag);
 
         // clamp to maxSpeed
-        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        velocity = Vector3.ClampMagnitude(velocity, PlayerProfile.ShipControl.maxSpeed);
 
         // apply rotation drag
-        zRotationVelocity = zRotationVelocity * (1 - Time.deltaTime * rotationDrag);
+        zRotationVelocity = zRotationVelocity * (1 - Time.deltaTime * PlayerProfile.ShipControl.rotationDrag);
 
         // clamp to maxRotationSpeed
-        zRotationVelocity = Mathf.Clamp(zRotationVelocity, -maxRotationSpeed, maxRotationSpeed);
+        zRotationVelocity = Mathf.Clamp(zRotationVelocity, -PlayerProfile.ShipControl.maxRotationSpeed, PlayerProfile.ShipControl.maxRotationSpeed);
 
         // update transform
         transform.position += velocity * Time.deltaTime;
 
-        if (useMouseAim)
+        if (PlayerProfile.ShipControl.useMouseAim)
         {
             mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
             Vector3 lookPos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -77,26 +72,23 @@ public class MS_PlayerShipController : MonoBehaviour
         {
             transform.Rotate(0, 0, zRotationVelocity * Time.deltaTime);
         }
-
-        UseDash();
-
     }
 
     void UseDash()
     {
-        if(canUseDash)
+        if(PlayerProfile.ShipControl.CanUseDash)
         {
             if (Input.GetKey(KeyCode.D))
             {
-                rb.AddForce(transform.right * dashForce, ForceMode.Impulse);
+                rb.AddForce(transform.right * PlayerProfile.ShipControl.dashForce, ForceMode.Impulse);
 
-                canUseDash = false;
+                PlayerProfile.ShipControl.CanUseDash = false;
             }
             if (Input.GetKey(KeyCode.A))
             {
-                rb.AddForce(-transform.right * dashForce, ForceMode.Impulse);
+                rb.AddForce(-transform.right * PlayerProfile.ShipControl.dashForce, ForceMode.Impulse);
 
-                canUseDash = false;
+                PlayerProfile.ShipControl.CanUseDash = false;
             }
         }
         else
@@ -105,8 +97,8 @@ public class MS_PlayerShipController : MonoBehaviour
         }
         if (dashCDCounter <= 0)
         {
-            dashCDCounter = dashCooldown;
-            canUseDash = true;
+            dashCDCounter = PlayerProfile.ShipControl.dashCooldown;
+            PlayerProfile.ShipControl.CanUseDash = true;
         }
     }
 
