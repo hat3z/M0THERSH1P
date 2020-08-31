@@ -41,7 +41,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4068373912626513877, guid: 1289ae5e152697749ade081380850158, type: 3}
 --- !u!1 &2885468010364252352
@@ -184,12 +184,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326e3d5b351ac7d4fb637303be6d4383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalInputAcceleration: 4
+  verticalInputAcceleration: 5
   horizontalInputAcceleration: 200
   maxSpeed: 30
-  maxRotationSpeed: 100
+  maxRotationSpeed: 45
   velocityDrag: 1
-  rotationDrag: 2
+  rotationDrag: 1
   useMouseAim: 1
   dashForce: 7
   dashCooldown: 1.5
