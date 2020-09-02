@@ -4,21 +4,38 @@ using UnityEngine;
 
 public class MS_PlayerShipController : MonoBehaviour
 {
-    [Header("Player Ship Control")]
+    public static MS_PlayerShipController Instance;
+
+    [Header("Player Profile Control")]
     public MS_PlayerProfile PlayerProfile;
     private float dashCDCounter;
     private float zRotationVelocity;
+
+    [Header("Player Weapon Control")]
+    Transform activeWeaponTransform;
+    public Transform bulletPool;
 
     // privates
     private Vector3 velocity;
     private Vector3 mousePos;
     Rigidbody rb;
 
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
     private void Start()
     {
 
         rb = GetComponent<Rigidbody>();
         dashCDCounter = PlayerProfile.ShipControl.dashCooldown;
+
+        SetActiveWeaponTransform();
+
 }
 
     private void Update()
@@ -27,10 +44,19 @@ public class MS_PlayerShipController : MonoBehaviour
         Vector3 acceleration = Input.GetAxis("Vertical") * PlayerProfile.ShipControl.verticalInputAcceleration * transform.up;
         velocity += acceleration * Time.deltaTime;
 
+        #region --- TURN INPUT BY KEYBOARD ---
         // apply turn input
         //float zTurnAcceleration = -1 * Input.GetAxis("Horizontal") * horizontalInputAcceleration ;
         //zRotationVelocity += zTurnAcceleration * Time.deltaTime;
+        #endregion
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject bullet = Instantiate(PlayerProfile.GetWeaponActiveBulletPrefab(), activeWeaponTransform);
+            bullet.transform.SetParent(bulletPool);
+            bullet.transform.localScale = new Vector3(.2f, .2f, .2f);
+            bullet.GetComponent<Rigidbody>().AddForce(-activeWeaponTransform.forward * PlayerProfile.GetActiveWeapon().bulletForce);
+        }
 
     }
 
@@ -42,6 +68,7 @@ public class MS_PlayerShipController : MonoBehaviour
 
     }
 
+    #region ---- PLAYER SHIP CONTROL ---
     void ShipControl()
     {
         // apply velocity drag
@@ -101,5 +128,16 @@ public class MS_PlayerShipController : MonoBehaviour
             PlayerProfile.ShipControl.CanUseDash = true;
         }
     }
+    #endregion
+
+    #region ---- PLAYER WEAPON CONTROL ----
+
+    void SetActiveWeaponTransform()
+    {
+        activeWeaponTransform = transform.GetChild(0).transform.Find(PlayerProfile.GetActiveWeapon().transformName);
+        activeWeaponTransform.gameObject.SetActive(true);
+    }
+
+    #endregion
 
 }

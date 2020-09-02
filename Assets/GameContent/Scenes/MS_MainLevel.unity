@@ -825,11 +825,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerShip_Base
       objectReference: {fileID: 0}
-    - target: {fileID: 641656006138452306, guid: a2dd1193371c9a7449daa846770fa256,
+    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
         type: 3}
       propertyPath: bulletPool
       value: 
       objectReference: {fileID: 1006993005}
+    - target: {fileID: 2885468010364252352, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2dd1193371c9a7449daa846770fa256, type: 3}
 --- !u!1 &1169436558

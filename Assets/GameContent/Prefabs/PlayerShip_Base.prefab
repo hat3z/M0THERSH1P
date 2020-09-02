@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4847166925995927443}
   - component: {fileID: 1408104324811351823}
   m_Layer: 0
-  m_Name: playerWeapon_1
+  m_Name: playerWeapon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7420800078715354900}
   - component: {fileID: 7420800078715354901}
-  - component: {fileID: 641656006138452306}
   - component: {fileID: 913718703}
   m_Layer: 0
   m_Name: PlayerShip_Base
@@ -190,27 +189,16 @@ MonoBehaviour:
       maxRotationSpeed: 45
       useMouseAim: 1
       verticalInputAcceleration: 5
-      horizontalInputAcceleration: 200
       velocityDrag: 1
       rotationDrag: 1
       dashForce: 7
       dashCooldown: 1.5
---- !u!114 &641656006138452306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7420800078715354986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6331e16cf0b354944be77c177efe1eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeWeaponTransform: {fileID: 1321386976}
-  weaponBullerPrefab: {fileID: 728141911683076853, guid: 54478ade3fbe9e74a97de79a221247c5,
-    type: 3}
-  bulletForce: 1000
+    WeaponControl:
+    - weaponName: BurstGun
+      bulletForce: 1000
+      transformName: playerWeapon1
+      bulletPrefabName: playerWeapon1_bullet
+      isActive: 1
   bulletPool: {fileID: 0}
 --- !u!54 &913718703
 Rigidbody:
