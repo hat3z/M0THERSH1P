@@ -147,6 +147,8 @@ public class MS_PlayerProfile
     [System.Serializable]
     public class PlayerInventory
     {
+        public int PlayerHealth;
+        public int PlayerExperience;
         public int PlayerFuel;
         public int PlayerMoney;
         public List<Item> PlayerItemsList = new List<Item>();
