@@ -24,6 +24,23 @@ public class ItemDatabase : ScriptableObject {
     //ITEMS HERE
     public List<Item> Items = new List<Item>();
 
+    public Item GetItemByItemName(string _itemName)
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if(Items[i].itemName == _itemName)
+            {
+                return Items[i];
+            }
+            else
+            {
+                Debug.Log("No Item with name: " + _itemName);
+                return null;
+            }
+        }
+        return null;
+    }
+
     public void AddNewItemToDatabase()
     {
         Item newItem = new Item();

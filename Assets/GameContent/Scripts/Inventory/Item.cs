@@ -9,10 +9,12 @@ public class Item
     public string displayName;
     public string gameObjectName;
     public string iconName;
+    public enum itemTier { Normal, High, Rare};
+    public itemTier ItemTier;
     public int quantity;
     public int priceToSell;
     public List<string> ingredientsList = new List<string>();
-
+    
     public bool isCraftable()
     {
         if(ingredientsList.Count != 0)

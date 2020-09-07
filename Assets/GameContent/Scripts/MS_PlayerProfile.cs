@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 [System.Serializable]
 public class MS_PlayerProfile
 {
+
 
     public PlayerShipControl ShipControl;
 
@@ -31,6 +33,73 @@ public class MS_PlayerProfile
     }
 
     #endregion
+
+    #region --- ITEMS HANDLING (Add, Remove) ---
+
+    public void AddItemToInventory(string _itemName, int _quantity)
+    {
+        Item itemToAdd = ItemDatabase.Instance.GetItemByItemName(_itemName);
+        if (isItemInInventory(_itemName))
+        {
+            GetItemByNameInProfile(_itemName).quantity += _quantity;
+        }
+        else
+        {
+            itemToAdd.quantity = _quantity;
+            Inventory.PlayerItemsList.Add(itemToAdd);
+        }
+    }
+
+    bool isItemInInventory(string _itemName)
+    {
+        for (int i = 0; i < Inventory.PlayerItemsList.Count; i++)
+        {
+            if (Inventory.PlayerItemsList[i].itemName == _itemName)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    Item GetItemByNameInProfile(string _itemName)
+    {
+        for (int i = 0; i < Inventory.PlayerItemsList.Count; i++)
+        {
+            if (Inventory.PlayerItemsList[i].itemName == _itemName)
+            {
+                return Inventory.PlayerItemsList[i];
+            }
+            else
+            {
+                Debug.Log("No Item with name in Inventory: " + _itemName);
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public void RemoveItemFromPlayerInventory(string _itemName, int _quantity)
+    {
+        if(isItemInInventory(_itemName))
+        {
+            if(GetItemByNameInProfile(_itemName).quantity >=1)
+            {
+                GetItemByNameInProfile(_itemName).quantity -= _quantity;
+            }
+            else
+            {
+                Inventory.PlayerItemsList.Remove(GetItemByNameInProfile(_itemName));
+            }
+        }
+    }
+
+    #endregion
+
 
 
     [System.Serializable]
@@ -78,6 +147,8 @@ public class MS_PlayerProfile
     [System.Serializable]
     public class PlayerInventory
     {
-        // List of items.
+        public int PlayerFuel;
+        public int PlayerMoney;
+        public List<Item> PlayerItemsList = new List<Item>();
     }
 }
