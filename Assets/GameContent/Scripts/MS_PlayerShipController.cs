@@ -12,8 +12,8 @@ public class MS_PlayerShipController : MonoBehaviour
     private float zRotationVelocity;
 
     [Header("Player Weapon Control")]
-    Transform activeWeaponTransform;
     public Transform bulletPool;
+    Transform activeWeaponTransform;
 
     // privates
     private Vector3 velocity;
