@@ -184,7 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326e3d5b351ac7d4fb637303be6d4383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateOffset: 0
   PlayerProfile:
     ShipControl:
       maxSpeed: 30
@@ -193,7 +192,7 @@ MonoBehaviour:
       verticalInputAcceleration: 5
       velocityDrag: 1
       rotationDrag: 1
-      dashForce: 7
+      dashForce: 15
       dashCooldown: 1.5
     WeaponControl:
     - weaponName: BurstGun

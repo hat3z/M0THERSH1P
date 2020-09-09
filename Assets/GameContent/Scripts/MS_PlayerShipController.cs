@@ -7,7 +7,6 @@ public class MS_PlayerShipController : MonoBehaviour
     public static MS_PlayerShipController Instance;
 
     [Header("Player Profile Control")]
-    public float rotateOffset;
     public MS_PlayerProfile PlayerProfile;
     private float dashCDCounter;
     private float zRotationVelocity;
@@ -92,7 +91,7 @@ public class MS_PlayerShipController : MonoBehaviour
             mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 30);
             Vector3 lookPos = Camera.main.ScreenToWorldPoint(mousePos);
             lookPos = lookPos - transform.position;
-            float angle = Mathf.Atan2(lookPos.y, lookPos.x) * Mathf.Rad2Deg - rotateOffset;
+            float angle = Mathf.Atan2(lookPos.y, lookPos.x) * Mathf.Rad2Deg - 90;
             transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         }
