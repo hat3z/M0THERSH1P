@@ -53,3 +53,42 @@ MonoBehaviour:
     quantity: 0
     priceToSell: 100
     ingredientsList: []
+  ShipParts:
+  - ShipPartName: dashEngineBasic
+    displayName: Dash Engine Basic
+    iconName: 
+    PartType: 0
+    ItemTier: 0
+    ShipPartModifiers:
+    - modifierName: DashForce
+      modifierValue: 5
+    quantity: 1
+    priceToSell: 30
+    ingredientsList:
+    - metalScrap_3
+  - ShipPartName: energyShieldBasic
+    displayName: Basic Energy Shield
+    iconName: 
+    PartType: 1
+    ItemTier: 0
+    ShipPartModifiers:
+    - modifierName: ShieldActiveTime
+      modifierValue: 5
+    quantity: 1
+    priceToSell: 20
+    ingredientsList:
+    - metalScrap_2
+    - alienEnergy_2
+  - ShipPartName: speedBosterBasic
+    displayName: Speed Boost Basic
+    iconName: 
+    PartType: 2
+    ItemTier: 0
+    ShipPartModifiers:
+    - modifierName: MaxSpeed
+      modifierValue: 15
+    quantity: 1
+    priceToSell: 25
+    ingredientsList:
+    - metalScrap_3
+    - alienEnergy_4

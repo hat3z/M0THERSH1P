@@ -350,7 +350,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00024414062, y: -0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 218.30005, y: 67.599976}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &439541397
@@ -543,7 +543,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -371}
+  m_AnchoredPosition: {x: 0, y: -362}
   m_SizeDelta: {x: 801, y: 494}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &638310400
@@ -1283,6 +1283,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerShip_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
+      propertyPath: PlayerProfile.Inventory.PlayerItemsList.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
         type: 3}
