@@ -21,8 +21,13 @@ public class ItemDatabase : ScriptableObject {
     }
 
     [SerializeField]
-    //ITEMS HERE
+    // ITEMS LIST
     public List<Item> Items = new List<Item>();
+
+    // SHIP PARTS LIST
+    public List<ShipPart> ShipParts = new List<ShipPart>();
+
+    // INGREDIENTS HELP: Example: metalScrap_2 => 2 metalScrap
 
     public Item GetItemByItemName(string _itemName)
     {
@@ -45,6 +50,12 @@ public class ItemDatabase : ScriptableObject {
     {
         Item newItem = new Item();
         Items.Add(newItem);
+    }
+
+    public void AddNewShipPartToDatabase()
+    {
+        ShipPart newSP = new ShipPart();
+        ShipParts.Add(newSP);
     }
 
     public Sprite GetSpriteFromPath(string _path)

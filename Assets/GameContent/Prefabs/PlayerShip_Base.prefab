@@ -206,6 +206,7 @@ MonoBehaviour:
       PlayerFuel: 0
       PlayerMoney: 0
       PlayerItemsList: []
+      ShipPartsList: []
   bulletPool: {fileID: 0}
 --- !u!54 &913718703
 Rigidbody:
@@ -242,14 +243,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2558412461445249731}
     m_Modifications:
-    - target: {fileID: 1332618806088026, guid: 96decb074303dd644930252238107cd6, type: 3}
-      propertyPath: m_Name
-      value: FX_Steam
-      objectReference: {fileID: 0}
-    - target: {fileID: 1332618806088026, guid: 96decb074303dd644930252238107cd6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4573320566024166, guid: 96decb074303dd644930252238107cd6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -293,6 +286,14 @@ PrefabInstance:
     - target: {fileID: 4573320566024166, guid: 96decb074303dd644930252238107cd6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -179.99998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332618806088026, guid: 96decb074303dd644930252238107cd6, type: 3}
+      propertyPath: m_Name
+      value: FX_Steam
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332618806088026, guid: 96decb074303dd644930252238107cd6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198610806871362422, guid: 96decb074303dd644930252238107cd6,
         type: 3}

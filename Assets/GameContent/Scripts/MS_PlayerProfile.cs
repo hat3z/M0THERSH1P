@@ -152,5 +152,6 @@ public class MS_PlayerProfile
         public int PlayerFuel;
         public int PlayerMoney;
         public List<Item> PlayerItemsList = new List<Item>();
+        public List<ShipPart> ShipPartsList = new List<ShipPart>();
     }
 }
