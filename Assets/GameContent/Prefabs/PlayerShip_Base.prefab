@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326e3d5b351ac7d4fb637303be6d4383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExhaustFX: {fileID: 1598323662457038}
   PlayerProfile:
     ShipControl:
       maxSpeed: 30
@@ -357,12 +358,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Exhaust_Trail
       objectReference: {fileID: 0}
-    - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+--- !u!1 &1598323662457038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97,
+    type: 3}
+  m_PrefabInstance: {fileID: 1590951968}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7420800078177751513
 PrefabInstance:
   m_ObjectHideFlags: 0

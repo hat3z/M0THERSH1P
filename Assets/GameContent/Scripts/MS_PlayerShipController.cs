@@ -6,6 +6,9 @@ public class MS_PlayerShipController : MonoBehaviour
 {
     public static MS_PlayerShipController Instance;
 
+    [Header("Particles")]
+    public GameObject ExhaustFX;
+
     [Header("Player Profile Control")]
     public MS_PlayerProfile PlayerProfile;
     private float dashCDCounter;
@@ -35,7 +38,6 @@ public class MS_PlayerShipController : MonoBehaviour
         dashCDCounter = PlayerProfile.ShipControl.dashCooldown;
 
         SetActiveWeaponTransform();
-
 }
 
     private void Update()
@@ -57,7 +59,16 @@ public class MS_PlayerShipController : MonoBehaviour
             bullet.transform.localScale = new Vector3(.2f, .2f, .2f);
             bullet.GetComponent<Rigidbody>().AddForce(-activeWeaponTransform.forward * PlayerProfile.GetActiveWeapon().bulletForce);
         }
+        ParticleSystem.MainModule module = ExhaustFX.GetComponent<ParticleSystem>().main;
+        if (acceleration.y != 0)
+        {
 
+            module.startSpeedMultiplier = acceleration.y;
+        }
+        else
+        {
+            module.startSpeedMultiplier = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -138,6 +149,10 @@ public class MS_PlayerShipController : MonoBehaviour
         activeWeaponTransform = transform.GetChild(0).transform.Find(PlayerProfile.GetActiveWeapon().transformName);
         activeWeaponTransform.gameObject.SetActive(true);
     }
+
+    #endregion
+
+    #region ---- PARTICLE HANDLING ----
 
     #endregion
 

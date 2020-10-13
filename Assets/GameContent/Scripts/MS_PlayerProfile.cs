@@ -6,8 +6,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 [System.Serializable]
 public class MS_PlayerProfile
 {
-
-
     public PlayerShipControl ShipControl;
 
     public List<PlayerWeaponControl> WeaponControl = new List<PlayerWeaponControl>();
