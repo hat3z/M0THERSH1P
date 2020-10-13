@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 8873334210341490912}
   - component: {fileID: 8881305020355840648}
   - component: {fileID: 8890186846595238136}
-  - component: {fileID: 7546943676273284628}
   - component: {fileID: -5247841520105501718}
+  - component: {fileID: 4236974382479967365}
+  - component: {fileID: 569794326275955282}
   m_Layer: 0
   m_Name: MS_AsteroidSmall_02
-  m_TagString: Untagged
+  m_TagString: EnvironmentItemTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,20 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &7546943676273284628
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8877094216401554676}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: b49983a0f7ad7074faad9e7f88640f9a, type: 3}
 --- !u!114 &-5247841520105501718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,3 +101,33 @@ MonoBehaviour:
   - {fileID: 1180248314969840, guid: 101d62f0a3e4fef4eab61adb79c845df, type: 3}
   - {fileID: 1450638143650814, guid: 9fe1ddc0da27cb44ebeeb8c2befa68bd, type: 3}
   Loot: []
+--- !u!54 &4236974382479967365
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8877094216401554676}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &569794326275955282
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8877094216401554676}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 3.0676818
+  m_Height: 12.115335
+  m_Direction: 1
+  m_Center: {x: 0.0000060796738, y: -0.00000023841858, z: -0.00000023841858}

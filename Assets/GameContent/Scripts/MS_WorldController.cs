@@ -14,24 +14,21 @@ public class MS_WorldController : MonoBehaviour
 
     [Header("Big Asteroid Settings")]
     public Transform B_AsteroidPool;
-    public int B_AsteroidMinSeed;
-    public int B_AsteroidMaxSeed;
+    public int B_AsteroidPoolSize;
     public float B_AsteroidMinSize;
     public float B_AsteroidMaxSize;
     public List<GameObject> B_AsteroidPrefabs;
 
     [Header("Small Asteroid Settings")]
     public Transform S_AsteroidPool;
-    public int S_AsteroidMinSeed;
-    public int S_AsteroidMaxSeed;
+    public int S_AsteroidPoolSize;
     public float S_AsteroidMinSize;
     public float S_AsteroidMaxSize;
     public List<GameObject> S_AsteroidPrefabs;
 
     [Header("Debris Settings")]
     public Transform DebrisPool;
-    public int debrisMinSeed;
-    public int debrisMaxSeed;
+    public int DebrisPoolSize;
     public List<GameObject> DebrisPrefabs;
 
     [Header("Particle Settings")]
@@ -50,22 +47,21 @@ public class MS_WorldController : MonoBehaviour
         GenerateAsteroid_Big();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     #region Debris Generation
     void GenerateDebris()
     {
-        int maxDebrisCount = Random.Range(debrisMinSeed, debrisMaxSeed);
-        Debug.Log("Max Debris Count: " + maxDebrisCount);
-        for (int i = 0; i < maxDebrisCount; i++)
+        MS_WorldItem worldItem;
+        for (int i = 0; i < DebrisPoolSize; i++)
         {
             GameObject debrisGO = Instantiate(DebrisPrefabs[Random.Range(0, DebrisPrefabs.Count)]);
+            worldItem = debrisGO.GetComponent<MS_WorldItem>();
             debrisGO.transform.SetParent(DebrisPool, false);
-            debrisGO.transform.position = GetRandomPosition();
+            if(worldItem.CanSpawn)
+            {
+                debrisGO.transform.position = GetRandomPosition();
+            }
+
         }
     }
     #endregion
@@ -73,14 +69,18 @@ public class MS_WorldController : MonoBehaviour
     #region Big Asteroid Generation
     void GenerateAsteroid_Big()
     {
-        int maxAsteroidCount = Random.Range(B_AsteroidMinSeed, B_AsteroidMaxSeed);
-        Debug.Log("Max AsteroidBig Count: " + maxAsteroidCount);
-        for (int i = 0; i < maxAsteroidCount; i++)
+        MS_WorldItem worldItem;
+        for (int i = 0; i < B_AsteroidPoolSize; i++)
         {
             GameObject b_asteroidGO = Instantiate(B_AsteroidPrefabs[Random.Range(0, B_AsteroidPrefabs.Count)]);
+            worldItem = b_asteroidGO.GetComponent<MS_WorldItem>();
             b_asteroidGO.transform.SetParent(B_AsteroidPool, false);
             b_asteroidGO.transform.localScale = GetRandomAsteroidScale_Big();
-            b_asteroidGO.transform.position = GetRandomPosition();
+            if(worldItem.CanSpawn)
+            {
+                b_asteroidGO.transform.position = GetRandomPosition();
+            }
+
             b_asteroidGO.transform.eulerAngles = GetRandomRotation();
         }
     }
@@ -89,14 +89,17 @@ public class MS_WorldController : MonoBehaviour
     #region Small Asteroid Generation
     void GenerateAsteroid_Small()
     {
-        int maxAsteroidCount = Random.Range(S_AsteroidMinSeed, S_AsteroidMaxSeed);
-        Debug.Log("Max AsteroidBig Count: " + maxAsteroidCount);
-        for (int i = 0; i < maxAsteroidCount; i++)
+        MS_WorldItem worldItem;
+        for (int i = 0; i < S_AsteroidPoolSize; i++)
         {
             GameObject s_asteroidGO = Instantiate(S_AsteroidPrefabs[Random.Range(0, S_AsteroidPrefabs.Count)]);
+            worldItem = s_asteroidGO.GetComponent<MS_WorldItem>();
             s_asteroidGO.transform.SetParent(S_AsteroidPool, false);
             s_asteroidGO.transform.localScale = GetRandomAsteroidScale_Small();
-            s_asteroidGO.transform.position = GetRandomPosition();
+            if(worldItem.CanSpawn)
+            {
+                s_asteroidGO.transform.position = GetRandomPosition();
+            }
             s_asteroidGO.transform.eulerAngles = GetRandomRotation();
         }
     }
