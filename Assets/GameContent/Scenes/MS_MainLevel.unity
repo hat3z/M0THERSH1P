@@ -749,6 +749,7 @@ MonoBehaviour:
   - {fileID: 2577274664936736232, guid: 4335a76b965fbd746a5bbf6005cac2a7, type: 3}
   - {fileID: 83944479607061102, guid: 92486cb846991c24bb21bc77ce9f24fd, type: 3}
   - {fileID: 5136501270330473149, guid: 4eb850e31d9182b48b2a7d9b8c01d129, type: 3}
+  - {fileID: 1879769179923522, guid: 65932b7368590234d8163da03c2055d8, type: 3}
   PlayerParticleSize: 0
   PlayerParticles: []
   EnemyParticleSize: 0

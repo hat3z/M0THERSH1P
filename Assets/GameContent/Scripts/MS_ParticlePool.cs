@@ -84,7 +84,41 @@ public class MS_ParticlePool : MonoBehaviour
 
     public GameObject GetRandomEnvironmentParticle()
     {
-        return EnviroParticlePool[Random.Range(0, EnviroParticlePool.Count)];
+        GameObject result = EnviroParticlePool[Random.Range(0, GetEnvironmentParticlesByType(MS_Particle.type.Environment).Count)];
+        if(result.GetComponent<MS_Particle>().Type == MS_Particle.type.Environment)
+        {
+            if(result.activeSelf)
+            {
+                return result;
+            }
+        }
+        return result;
     }
+
+    public void PlayEnvironmentExplosionParticle()
+    {
+        GameObject result = EnviroParticlePool[Random.Range(0, GetEnvironmentParticlesByType(MS_Particle.type.EnviroExplosion).Count)];
+        if (result.GetComponent<MS_Particle>().Type == MS_Particle.type.EnviroExplosion)
+        {
+            if (result.activeSelf)
+            {
+                result.GetComponent<ParticleSystem>().Play();
+            }
+        }
+    }
+
+    List<GameObject> GetEnvironmentParticlesByType(MS_Particle.type _type)
+    {
+        List<GameObject> result = new List<GameObject>();
+        for (int i = 0; i < EnviroParticlePool.Count; i++)
+        {
+            if(EnviroParticlePool[i].GetComponent<MS_Particle>().Type == _type)
+            {
+                result.Add(EnviroParticles[i]);
+            }
+        }
+        return result;
+    }
+
 
 }

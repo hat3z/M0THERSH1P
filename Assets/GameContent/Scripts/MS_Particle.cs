@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MS_Particle : MonoBehaviour
 {
-    public enum type { Environment, Player, Enemy};
+    public enum type { Environment,EnviroExplosion ,Player, Enemy};
     public type Type;
 
 

@@ -26,9 +26,13 @@ public class MS_WorldItem : MonoBehaviour
             }
             if(itemHealth == hitDamage)
             {
+                // BUGOS - majd raer
+                //MS_ParticlePool.Instance.PlayEnvironmentExplosionParticle();
                 gameObject.SetActive(false);
             }
-            PlayImpactFX(collision);
+            // BUGOS - majd raer
+            //PlayImpactFX(collision);
+
             Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag == "EnvironmentItemTag")
