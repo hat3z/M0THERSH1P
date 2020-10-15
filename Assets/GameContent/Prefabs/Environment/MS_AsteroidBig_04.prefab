@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4406969822312248628}
+  - component: {fileID: -2373067316227327031}
   - component: {fileID: 4417552005098253042}
   - component: {fileID: 4425298171346967318}
   - component: {fileID: 288611853550773964}
-  - component: {fileID: -2373067316227327031}
   - component: {fileID: -8392912073412127160}
   m_Layer: 0
   m_Name: MS_AsteroidBig_04
@@ -31,10 +31,40 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
-  m_Children: []
+  m_Children:
+  - {fileID: 4694088891178950154}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2373067316227327031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412341017034382672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5876036a33a24e46b2725daa52c7821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 1
+  itemHealth: 50
+  ImpactFX:
+  - {fileID: 1643851402782444, guid: 4f703a1da613efc43b08b1d2bdcfd49f, type: 3}
+  - {fileID: 1180248314969840, guid: 101d62f0a3e4fef4eab61adb79c845df, type: 3}
+  - {fileID: 1450638143650814, guid: 9fe1ddc0da27cb44ebeeb8c2befa68bd, type: 3}
+  Loot: []
+  ParticleLibrary:
+    ImpactParticles:
+    - {fileID: 2577274664936736232, guid: 4335a76b965fbd746a5bbf6005cac2a7, type: 3}
+    - {fileID: 83944479607061102, guid: 92486cb846991c24bb21bc77ce9f24fd, type: 3}
+    - {fileID: 5136501270330473149, guid: 4eb850e31d9182b48b2a7d9b8c01d129, type: 3}
+    ExplosionParticles:
+    - {fileID: 8284569485939183441, guid: c7084850399fc4c43ac05cb7e58b69f7, type: 3}
+    MiscParticles: []
+    EnvironmentParticles:
+    - {fileID: 1272600302375987964, guid: ac33b0eb9df704b4ea91f08fea1de86f, type: 3}
 --- !u!33 &4417552005098253042
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -95,25 +125,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 135.93875
   m_Center: {x: -4.43058, y: 4.209198, z: -0.16627502}
---- !u!114 &-2373067316227327031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4412341017034382672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5876036a33a24e46b2725daa52c7821, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemType: 0
-  itemHealth: 50
-  ImpactFX:
-  - {fileID: 1643851402782444, guid: 4f703a1da613efc43b08b1d2bdcfd49f, type: 3}
-  - {fileID: 1180248314969840, guid: 101d62f0a3e4fef4eab61adb79c845df, type: 3}
-  - {fileID: 1450638143650814, guid: 9fe1ddc0da27cb44ebeeb8c2befa68bd, type: 3}
-  Loot: []
 --- !u!54 &-8392912073412127160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -130,3 +141,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &7721179727527237046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4694088891178950154}
+  m_Layer: 0
+  m_Name: ParticlePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4694088891178950154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7721179727527237046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4406969822312248628}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

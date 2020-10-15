@@ -33,6 +33,8 @@ public class MS_WorldController : MonoBehaviour
 
     [Header("Particle Settings")]
     public Transform ParticlePool;
+    public int maxEnvironmentParticleCount;
+    public MS_ParticleLibrary ParticleLibrary;
 
     private void Awake()
     {
@@ -45,6 +47,7 @@ public class MS_WorldController : MonoBehaviour
         GenerateDebris();
         GenerateAsteroid_Small();
         GenerateAsteroid_Big();
+        GenerateEnvironmentCloudParticle();
     }
 
 
@@ -61,7 +64,6 @@ public class MS_WorldController : MonoBehaviour
             {
                 debrisGO.transform.position = GetRandomPosition();
             }
-
         }
     }
     #endregion
@@ -80,7 +82,6 @@ public class MS_WorldController : MonoBehaviour
             {
                 b_asteroidGO.transform.position = GetRandomPosition();
             }
-
             b_asteroidGO.transform.eulerAngles = GetRandomRotation();
         }
     }
@@ -99,6 +100,7 @@ public class MS_WorldController : MonoBehaviour
             if(worldItem.CanSpawn)
             {
                 s_asteroidGO.transform.position = GetRandomPosition();
+
             }
             s_asteroidGO.transform.eulerAngles = GetRandomRotation();
         }
@@ -133,4 +135,18 @@ public class MS_WorldController : MonoBehaviour
     }
 
     #endregion
+
+    #region Environment / World Particle handlings
+
+    void GenerateEnvironmentCloudParticle()
+    {
+        for (int i = 0; i < maxEnvironmentParticleCount; i++)
+        {
+            MS_ParticleController.Instance.PlayEnvironmentParticle(ParticleLibrary, GetRandomPosition(), 0);
+            MS_ParticleController.Instance.PlayEnvironmentParticle(ParticleLibrary, GetRandomPosition(), 1);
+        }
+    }
+
+    #endregion
+
 }

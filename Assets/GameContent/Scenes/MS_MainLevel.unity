@@ -214,7 +214,7 @@ RectTransform:
   - {fileID: 439541396}
   - {fileID: 638310399}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -250,6 +250,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 892735617}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &219152469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 219152471}
+  - component: {fileID: 219152470}
+  m_Layer: 0
+  m_Name: --- PARTICLE CONTROLLER ---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &219152470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219152469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8568d4ab20ca2704abd6154344ee2175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &219152471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219152469}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -109.51506, y: -34.666355, z: -102.54964}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &439541395
 GameObject:
@@ -444,7 +487,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &587167275
 GameObject:
@@ -663,9 +706,8 @@ GameObject:
   m_Component:
   - component: {fileID: 892735617}
   - component: {fileID: 892735618}
-  - component: {fileID: 892735619}
   m_Layer: 0
-  m_Name: _WorldController
+  m_Name: --- WORLD CONTROLLER ---
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -687,7 +729,7 @@ Transform:
   - {fileID: 1119676703}
   - {fileID: 587167276}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &892735618
 MonoBehaviour:
@@ -732,28 +774,14 @@ MonoBehaviour:
   - {fileID: 1805759638704428839, guid: a098e2cafe51ed342b73008519def308, type: 3}
   - {fileID: 4393342805147935793, guid: 3b67263d184f82847b56254c4ceb53cb, type: 3}
   ParticlePool: {fileID: 587167276}
---- !u!114 &892735619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892735616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b352041297448024f85872124bed8ae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnvironmentParticleSize: 5
-  EnviroParticles:
-  - {fileID: 2577274664936736232, guid: 4335a76b965fbd746a5bbf6005cac2a7, type: 3}
-  - {fileID: 83944479607061102, guid: 92486cb846991c24bb21bc77ce9f24fd, type: 3}
-  - {fileID: 5136501270330473149, guid: 4eb850e31d9182b48b2a7d9b8c01d129, type: 3}
-  - {fileID: 1879769179923522, guid: 65932b7368590234d8163da03c2055d8, type: 3}
-  PlayerParticleSize: 0
-  PlayerParticles: []
-  EnemyParticleSize: 0
-  EnemyParticles: []
+  maxEnvironmentParticleCount: 15
+  ParticleLibrary:
+    ImpactParticles: []
+    ExplosionParticles: []
+    MiscParticles: []
+    EnvironmentParticles:
+    - {fileID: 6910924057401406438, guid: 83099497e03ac504b82cc3d6d2cd5f38, type: 3}
+    - {fileID: 5874554866322232123, guid: 3ce6fd4636f8b0a4dae89ad7e132e506, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,7 +1018,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1041921132 stripped
 Transform:
@@ -1073,7 +1101,7 @@ PrefabInstance:
     - target: {fileID: 7420800078715354900, guid: a2dd1193371c9a7449daa846770fa256,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7420800078715354900, guid: a2dd1193371c9a7449daa846770fa256,
         type: 3}
@@ -1093,23 +1121,13 @@ PrefabInstance:
     - target: {fileID: 7420800078715354986, guid: a2dd1193371c9a7449daa846770fa256,
         type: 3}
       propertyPath: m_Name
-      value: PlayerShip_Base
+      value: --- PLAYER CONTROLLER ---
       objectReference: {fileID: 0}
     - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
         type: 3}
       propertyPath: bulletPool
       value: 
       objectReference: {fileID: 1006993005}
-    - target: {fileID: 198876262027886838, guid: a2dd1193371c9a7449daa846770fa256,
-        type: 3}
-      propertyPath: simulationSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198876262027886838, guid: a2dd1193371c9a7449daa846770fa256,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2dd1193371c9a7449daa846770fa256, type: 3}
 --- !u!1 &1713690077

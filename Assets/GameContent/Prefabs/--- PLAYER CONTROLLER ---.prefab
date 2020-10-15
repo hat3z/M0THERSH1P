@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 913718703}
   - component: {fileID: 2366421337983921779}
   m_Layer: 0
-  m_Name: PlayerShip_Base
+  m_Name: --- PLAYER CONTROLLER ---
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
