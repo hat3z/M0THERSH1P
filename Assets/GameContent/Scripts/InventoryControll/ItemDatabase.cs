@@ -46,6 +46,18 @@ public class ItemDatabase : ScriptableObject {
         return null;
     }
 
+    public List<Item> GetItemListByTier(Item.itemTier _tier, MS_WorldItem.itemType _itemType)
+    {
+        List<Item> result = new List<Item>();
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if(Items[i].ItemTier == _tier && Items[i].ParentItemType == _itemType)
+            {
+                result.Add(Items[i]);
+            }
+        }
+        return result;
+    }
     public void AddNewItemToDatabase()
     {
         Item newItem = new Item();
@@ -70,4 +82,17 @@ public class ItemDatabase : ScriptableObject {
         GameObject result = (GameObject)Resources.Load("ItemPrefabs/" + _path, typeof(GameObject));
         return result;
     }
+
+    public GameObject GetGameObjectFromItemName(string _itemname)
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if(Items[i].itemName == _itemname)
+            {
+                return GetGameObjectFromPath(Items[i].gameObjectName);
+            }
+        }
+        return null;
+    }
+
 }

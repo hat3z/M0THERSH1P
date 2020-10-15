@@ -11,6 +11,7 @@ public class Item
     public string iconName;
     public enum itemTier { Normal, High, Rare};
     public itemTier ItemTier;
+    public MS_WorldItem.itemType ParentItemType;
     public int quantity;
     public int priceToSell;
     public List<string> ingredientsList = new List<string>();

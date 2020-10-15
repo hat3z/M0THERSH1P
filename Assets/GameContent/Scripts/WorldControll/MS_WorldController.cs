@@ -26,6 +26,9 @@ public class MS_WorldController : MonoBehaviour
     public float S_AsteroidMaxSize;
     public List<GameObject> S_AsteroidPrefabs;
 
+    [Header("Loot Settings")]
+    public Transform LootItemPool;
+
     [Header("Debris Settings")]
     public Transform DebrisPool;
     public int DebrisPoolSize;
@@ -142,8 +145,10 @@ public class MS_WorldController : MonoBehaviour
     {
         for (int i = 0; i < maxEnvironmentParticleCount; i++)
         {
-            MS_ParticleController.Instance.PlayEnvironmentParticle(ParticleLibrary, GetRandomPosition(), 0);
-            MS_ParticleController.Instance.PlayEnvironmentParticle(ParticleLibrary, GetRandomPosition(), 1);
+            for (int a = 0; a < ParticleLibrary.EnvironmentParticles.Count; a++)
+            {
+                MS_ParticleController.Instance.PlayEnvironmentParticle(ParticleLibrary, GetRandomPosition(), a);
+            }
         }
     }
 

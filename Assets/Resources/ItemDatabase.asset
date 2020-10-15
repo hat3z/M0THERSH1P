@@ -15,9 +15,10 @@ MonoBehaviour:
   Items:
   - itemName: metalScrap
     displayName: Metal Scrap
-    gameObjectName: 
+    gameObjectName: MS_MetalScrap_01
     iconName: 
     ItemTier: 0
+    ParentItemType: 2
     quantity: 0
     priceToSell: 5
     ingredientsList: []
@@ -26,6 +27,7 @@ MonoBehaviour:
     gameObjectName: 
     iconName: 
     ItemTier: 1
+    ParentItemType: 2
     quantity: 0
     priceToSell: 10
     ingredientsList: []
@@ -34,6 +36,7 @@ MonoBehaviour:
     gameObjectName: 
     iconName: 
     ItemTier: 2
+    ParentItemType: 2
     quantity: 0
     priceToSell: 50
     ingredientsList: []
@@ -42,6 +45,7 @@ MonoBehaviour:
     gameObjectName: 
     iconName: 
     ItemTier: 1
+    ParentItemType: 1
     quantity: 0
     priceToSell: 15
     ingredientsList: []
@@ -50,8 +54,27 @@ MonoBehaviour:
     gameObjectName: 
     iconName: 
     ItemTier: 2
+    ParentItemType: 1
     quantity: 0
     priceToSell: 100
+    ingredientsList: []
+  - itemName: metalScrap2
+    displayName: Metal Scrap
+    gameObjectName: MS_MetalScrap_02
+    iconName: 
+    ItemTier: 0
+    ParentItemType: 2
+    quantity: 0
+    priceToSell: 5
+    ingredientsList: []
+  - itemName: metalScrap3
+    displayName: Metal Scrap
+    gameObjectName: MS_MetalScrap_03
+    iconName: 
+    ItemTier: 0
+    ParentItemType: 2
+    quantity: 5
+    priceToSell: 0
     ingredientsList: []
   ShipParts:
   - ShipPartName: dashEngineBasic
