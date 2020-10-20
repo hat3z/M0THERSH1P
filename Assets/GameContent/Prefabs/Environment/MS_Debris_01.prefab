@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemType: 2
   itemHealth: 10
+  LootItemDropForce: 10
   Loot: []
   maxLootItemCount: 3
   ImpactFX:

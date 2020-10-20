@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7909671573354430521}
   - component: {fileID: 7900181297018013545}
+  - component: {fileID: -5413099892913914641}
   - component: {fileID: 7890496290205021993}
   - component: {fileID: 3305518670788000715}
   - component: {fileID: 2109517921483131299}
@@ -43,6 +44,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7913225158086593939}
   m_Mesh: {fileID: 4300000, guid: 246f2fbeddaab6b43a709f1b224662b8, type: 3}
+--- !u!114 &-5413099892913914641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7913225158086593939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5024d4166127b4b954f67cabe3d2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: 
 --- !u!23 &7890496290205021993
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90,7 +104,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7913225158086593939}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0659806, y: 1.5960468, z: 0.60921246}
@@ -106,7 +120,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 48
