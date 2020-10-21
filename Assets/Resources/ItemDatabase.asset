@@ -15,16 +15,22 @@ MonoBehaviour:
   Items:
   - itemName: metalScrap
     displayName: Metal Scrap
-    gameObjectName: MS_MetalScrap_01
+    gameObjectNames:
+    - MS_MetalScrap_01
+    - MS_MetalScrap_02
+    - MS_MetalScrap_03
+    - MS_MetalScrap_04
+    - MS_MetalScrap_05
+    - MS_MetalScrap_06
     iconName: 
     ItemTier: 0
     ParentItemType: 2
-    quantity: 0
+    quantity: 3
     priceToSell: 5
     ingredientsList: []
   - itemName: metalScrapHigh
     displayName: Alien Energy
-    gameObjectName: 
+    gameObjectNames: []
     iconName: 
     ItemTier: 1
     ParentItemType: 2
@@ -33,7 +39,7 @@ MonoBehaviour:
     ingredientsList: []
   - itemName: metalScrapRare
     displayName: Metal Scrap
-    gameObjectName: 
+    gameObjectNames: []
     iconName: 
     ItemTier: 2
     ParentItemType: 2
@@ -42,7 +48,7 @@ MonoBehaviour:
     ingredientsList: []
   - itemName: alienEnergy
     displayName: Alien Energy
-    gameObjectName: 
+    gameObjectNames: []
     iconName: 
     ItemTier: 1
     ParentItemType: 1
@@ -51,30 +57,12 @@ MonoBehaviour:
     ingredientsList: []
   - itemName: alienEnergyRare
     displayName: Alien Energy
-    gameObjectName: 
+    gameObjectNames: []
     iconName: 
     ItemTier: 2
     ParentItemType: 1
     quantity: 0
     priceToSell: 100
-    ingredientsList: []
-  - itemName: metalScrap2
-    displayName: Metal Scrap
-    gameObjectName: MS_MetalScrap_02
-    iconName: 
-    ItemTier: 0
-    ParentItemType: 2
-    quantity: 0
-    priceToSell: 5
-    ingredientsList: []
-  - itemName: metalScrap3
-    displayName: Metal Scrap
-    gameObjectName: MS_MetalScrap_03
-    iconName: 
-    ItemTier: 0
-    ParentItemType: 2
-    quantity: 5
-    priceToSell: 0
     ingredientsList: []
   ShipParts:
   - ShipPartName: dashEngineBasic

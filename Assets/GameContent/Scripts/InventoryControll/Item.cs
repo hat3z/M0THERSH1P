@@ -7,7 +7,7 @@ public class Item
 
     public string itemName;
     public string displayName;
-    public string gameObjectName;
+    public List<string> gameObjectNames;
     public string iconName;
     public enum itemTier { Normal, High, Rare};
     public itemTier ItemTier;

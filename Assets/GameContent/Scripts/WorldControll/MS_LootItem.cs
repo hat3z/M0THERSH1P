@@ -41,6 +41,11 @@ public class MS_LootItem : MonoBehaviour
         }
     }
 
+    public void SetLootItemName(string _itemName)
+    {
+        ItemName = _itemName;
+    }
+
     IEnumerator StartDrop()
     {
         dropCooldown = true;
@@ -55,8 +60,14 @@ public class MS_LootItem : MonoBehaviour
     {
         if(other.gameObject.tag == "PlayerTag")
         {
+            AddLootItemToProfile();
             Destroy(gameObject);
         }
+    }
+
+    void AddLootItemToProfile()
+    {
+        MS_PlayerShipController.Instance.PlayerProfile.AddItemToInventory(ItemName, 1);
     }
 
 }

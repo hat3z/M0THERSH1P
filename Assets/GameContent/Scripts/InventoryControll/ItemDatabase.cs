@@ -31,11 +31,13 @@ public class ItemDatabase : ScriptableObject {
 
     public Item GetItemByItemName(string _itemName)
     {
+        Item result = new Item();
         for (int i = 0; i < Items.Count; i++)
         {
             if(Items[i].itemName == _itemName)
             {
-                return Items[i];
+                result = Items[i];
+                return result;
             }
             else
             {
@@ -83,13 +85,25 @@ public class ItemDatabase : ScriptableObject {
         return result;
     }
 
-    public GameObject GetGameObjectFromItemName(string _itemname)
+    //public GameObject GetGameObjectFromItemName(string _itemname)
+    //{
+    //    for (int i = 0; i < Items.Count; i++)
+    //    {
+    //        if(Items[i].itemName == _itemname)
+    //        {
+    //            return GetGameObjectFromPath(Items[i].gameObjectNames);
+    //        }
+    //    }
+    //    return null;
+    //}
+
+    public GameObject GetRandomGameObjectFromItemName(string _itemname)
     {
         for (int i = 0; i < Items.Count; i++)
         {
-            if(Items[i].itemName == _itemname)
+            if (Items[i].itemName == _itemname)
             {
-                return GetGameObjectFromPath(Items[i].gameObjectName);
+                return GetGameObjectFromPath(Items[i].gameObjectNames[Random.Range(0,Items[i].gameObjectNames.Count)]);
             }
         }
         return null;

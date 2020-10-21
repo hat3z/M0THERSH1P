@@ -101,9 +101,10 @@ public class MS_WorldItem : MonoBehaviour
         collider.enabled = false;
         for (int i = 0; i < Loot.Count; i++)
         {
-            lootItem = Instantiate(ItemDatabase.Instance.GetGameObjectFromItemName(Loot[i]));
+            lootItem = Instantiate(ItemDatabase.Instance.GetRandomGameObjectFromItemName(Loot[i]));
             lootItem.transform.SetParent(MS_WorldController.Instance.LootItemPool, true);
             lootItem.transform.position = transform.position;
+            lootItem.GetComponent<MS_LootItem>().SetLootItemName(Loot[i]);
         }
     }
 

@@ -36,15 +36,16 @@ public class MS_PlayerProfile
 
     public void AddItemToInventory(string _itemName, int _quantity)
     {
-        Item itemToAdd = ItemDatabase.Instance.GetItemByItemName(_itemName);
+        Item itemToAdd = new Item();
+        itemToAdd = ItemDatabase.Instance.GetItemByItemName(_itemName);
         if (isItemInInventory(_itemName))
         {
             GetItemByNameInProfile(_itemName).quantity += _quantity;
         }
         else
         {
-            itemToAdd.quantity = _quantity;
             Inventory.PlayerItemsList.Add(itemToAdd);
+            itemToAdd.quantity = _quantity;
         }
     }
 
