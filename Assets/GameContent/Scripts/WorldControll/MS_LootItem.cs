@@ -8,8 +8,13 @@ public class MS_LootItem : MonoBehaviour
     public string ItemName;
 
     Rigidbody rigidBody;
-    float itemDropForce = 20;
+    float itemDropForce = 2;
+    float itemDropForceCounter;
     bool dropCooldown;
+
+    List<float> dropAngles = new List<float>()
+    {30, 60,90,120, 150,180,210,240,270,300,330};
+
     private void Awake()
     {
         if(rigidBody == null)
@@ -21,28 +26,37 @@ public class MS_LootItem : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(StartDrop());
+        itemDropForceCounter = itemDropForce;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
        if(!dropCooldown)
         {
-            StopDrop();
+            if (rigidBody.drag != 25)
+            {
+                rigidBody.drag += 0.05f;
+            }
         }
     }
 
     IEnumerator StartDrop()
     {
         dropCooldown = true;
+        transform.localEulerAngles = new Vector3(0, 0, dropAngles[Random.Range(0,dropAngles.Count)]);
+        Debug.Log(transform.localEulerAngles);
         rigidBody.AddForce(transform.up * itemDropForce, ForceMode.VelocityChange);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         dropCooldown = false;
     }
 
-    void StopDrop()
+    private void OnTriggerEnter(Collider other)
     {
-        rigidBody.isKinematic = true;
+        if(other.gameObject.tag == "PlayerTag")
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

@@ -20,14 +20,11 @@ public class MS_WorldItem : MonoBehaviour
 
     bool canSpawn = true;
     Collider collider;
-    Transform dropTransform;
-    List<int> dropAngles = new List<int>()
-    {30, 60,90,120, 150,180,210,240,270,300,330};
+
     private void Start()
     {
         GetLootStartup();
         SetupColliderByType();
-        dropTransform = transform.GetChild(0).transform;
     }
 
     void SetupColliderByType()
@@ -105,7 +102,6 @@ public class MS_WorldItem : MonoBehaviour
         for (int i = 0; i < Loot.Count; i++)
         {
             lootItem = Instantiate(ItemDatabase.Instance.GetGameObjectFromItemName(Loot[i]));
-            dropTransform.localEulerAngles = new Vector3(0, 0, Random.Range(0, dropAngles.Count));
             lootItem.transform.SetParent(MS_WorldController.Instance.LootItemPool, true);
             lootItem.transform.position = transform.position;
         }

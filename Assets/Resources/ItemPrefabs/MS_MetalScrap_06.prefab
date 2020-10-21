@@ -107,8 +107,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.463546, y: 2.8587112, z: 0.80550694}
-  m_Center: {x: 0.15603569, y: -0.10777438, z: -0.23480296}
+  m_Size: {x: 1.4635462, y: 2.8587112, z: 2.6761475}
+  m_Center: {x: 0.15603569, y: -0.10777442, z: 0.115541026}
 --- !u!54 &2587501829046346205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,14 +132,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3902202503726052118}
     m_Modifications:
-    - target: {fileID: 1566770769944860, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
-      propertyPath: m_Name
-      value: SM_Prop_Light_Small_03
-      objectReference: {fileID: 0}
-    - target: {fileID: 1566770769944860, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4187199352517932, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.033
@@ -195,6 +187,14 @@ PrefabInstance:
     - target: {fileID: 4187199352517932, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.7087513
+      objectReference: {fileID: 0}
+    - target: {fileID: 1566770769944860, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
+      propertyPath: m_Name
+      value: SM_Prop_Light_Small_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1566770769944860, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}

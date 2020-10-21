@@ -49,18 +49,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemType: 1
   itemHealth: 50
+  LootItemDropForce: 0
+  Loot: []
+  maxLootItemCount: 0
   ImpactFX:
   - {fileID: 1643851402782444, guid: 4f703a1da613efc43b08b1d2bdcfd49f, type: 3}
   - {fileID: 1180248314969840, guid: 101d62f0a3e4fef4eab61adb79c845df, type: 3}
   - {fileID: 1450638143650814, guid: 9fe1ddc0da27cb44ebeeb8c2befa68bd, type: 3}
-  Loot: []
   ParticleLibrary:
     ImpactParticles:
     - {fileID: 2577274664936736232, guid: 4335a76b965fbd746a5bbf6005cac2a7, type: 3}
     - {fileID: 83944479607061102, guid: 92486cb846991c24bb21bc77ce9f24fd, type: 3}
     - {fileID: 5136501270330473149, guid: 4eb850e31d9182b48b2a7d9b8c01d129, type: 3}
     ExplosionParticles:
-    - {fileID: 8284569485939183441, guid: c7084850399fc4c43ac05cb7e58b69f7, type: 3}
+    - {fileID: 3099312615409707622, guid: bdde00e981e602d44be0cdbf9817ff97, type: 3}
     MiscParticles: []
     EnvironmentParticles: []
 --- !u!33 &5321884412539195190

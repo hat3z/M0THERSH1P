@@ -107,8 +107,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.64540786, y: 0.9148399, z: 0.41002655}
-  m_Center: {x: 0.038002014, y: -0.054772586, z: 0.22084427}
+  m_Size: {x: 0.64540786, y: 0.9148399, z: 1.2565341}
+  m_Center: {x: 0.038002014, y: -0.05477258, z: 0.19339906}
 --- !u!54 &2831674383331740129
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,14 +132,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1302589882072061353}
     m_Modifications:
-    - target: {fileID: 1566770769944860, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
-      propertyPath: m_Name
-      value: SM_Prop_Light_Small_03
-      objectReference: {fileID: 0}
-    - target: {fileID: 1566770769944860, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4187199352517932, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -182,6 +174,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4187199352517932, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1566770769944860, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
+      propertyPath: m_Name
+      value: SM_Prop_Light_Small_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1566770769944860, guid: 3fbfe9b012fb9164eb00169f247fddb7, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
