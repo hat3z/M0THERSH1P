@@ -62,7 +62,7 @@ MonoBehaviour:
     - {fileID: 83944479607061102, guid: 92486cb846991c24bb21bc77ce9f24fd, type: 3}
     - {fileID: 5136501270330473149, guid: 4eb850e31d9182b48b2a7d9b8c01d129, type: 3}
     ExplosionParticles:
-    - {fileID: 8018457867956200978, guid: 188ce5f27b40efb40b401b644daf6ce0, type: 3}
+    - {fileID: 8284569485939183441, guid: c7084850399fc4c43ac05cb7e58b69f7, type: 3}
     MiscParticles: []
     EnvironmentParticles:
     - {fileID: 1272600302375987964, guid: ac33b0eb9df704b4ea91f08fea1de86f, type: 3}

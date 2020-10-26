@@ -110,9 +110,9 @@ public class MS_WorldItem : MonoBehaviour
 
     IEnumerator DestroyAndDropLoot()
     {
-        DropLoot();
-        yield return new WaitForSeconds(.5f);
         gameObject.SetActive(false);
+        yield return new WaitForSeconds(.5f);
+        DropLoot();
     }
 
     #endregion
