@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.042276636, g: 0.058325246, b: 0.076235436, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -402,6 +402,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -571,6 +572,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -872,7 +874,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -898,7 +900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -30}
+  m_LocalPosition: {x: 0, y: 1.9, z: -35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -917,8 +919,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1041921132}
-  smoothSpeed: 0.02
-  offset: {x: 0, y: 3, z: -30}
+  smoothSpeed: 0.1
+  offset: {x: 0, y: 15, z: -30}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,6 +1103,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7420800078715354900, guid: a2dd1193371c9a7449daa846770fa256,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420800078715354900, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1113,6 +1120,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420800078715354900, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7420800078715354900, guid: a2dd1193371c9a7449daa846770fa256,
         type: 3}
@@ -1131,16 +1143,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7420800078715354900, guid: a2dd1193371c9a7449daa846770fa256,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7420800078715354900, guid: a2dd1193371c9a7449daa846770fa256,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7420800078715354900, guid: a2dd1193371c9a7449daa846770fa256,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -1154,19 +1156,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7420800078715354986, guid: a2dd1193371c9a7449daa846770fa256,
-        type: 3}
-      propertyPath: m_Name
-      value: --- PLAYER CONTROLLER ---
-      objectReference: {fileID: 0}
     - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
         type: 3}
       propertyPath: bulletPool
       value: 
       objectReference: {fileID: 1006993005}
-    - target: {fileID: 282100375, guid: a2dd1193371c9a7449daa846770fa256, type: 3}
-      propertyPath: m_Constraints
-      value: 126
+    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
+      propertyPath: PlayerProfile.ShipControl.maxSpeed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
+      propertyPath: PlayerProfile.ShipControl.dashForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
+      propertyPath: PlayerProfile.ShipControl.rotationDrag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
+      propertyPath: PlayerProfile.ShipControl.velocityDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
+      propertyPath: PlayerProfile.ShipControl.maxRotationSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
+      propertyPath: PlayerProfile.ShipControl.verticalInputAcceleration
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420800078715354901, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
+      propertyPath: PlayerProfile.WeaponControl.Array.data[0].bulletForce
+      value: 3500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420800078715354986, guid: a2dd1193371c9a7449daa846770fa256,
+        type: 3}
+      propertyPath: m_Name
+      value: --- PLAYER CONTROLLER ---
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2dd1193371c9a7449daa846770fa256, type: 3}
@@ -1222,6 +1255,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
