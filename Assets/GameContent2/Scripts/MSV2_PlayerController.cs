@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class MSV2_PlayerController : MonoBehaviour
 {
+
     [Header("Character health")]
     public float maxHealth;
     private float health;
+    public float currentXP;
+    private float nextXPAmount = 50; // Step in xp system.
+    public int currentLevel = 1;
+
 
     [Header("Character movement")]
     public float moveSpeed = 20.0f;
@@ -16,9 +21,10 @@ public class MSV2_PlayerController : MonoBehaviour
     public facing Facing;
     public GameObject Crosshair;
     public GameObject PlayerHandsAIM;
-    public GameObject bulletPrefab;
+    [Header("Weapons")]
+    public GameObject WP1_BulletPrefab;
     public GameObject bulletStart;
-    public float bulletSpeed = 150.0f;
+    public float bulletSpeed = 80f;
 
     public PlayerModifiers PlayerModifiers;
 
@@ -31,7 +37,7 @@ public class MSV2_PlayerController : MonoBehaviour
     float vertical;
 
     // WP1
-    float fireRate = .1f;
+    public float fireRate = .18f;
     float nextFire = 0f;
     public float WP1_BaseDamage;
     void Start()
@@ -44,9 +50,10 @@ public class MSV2_PlayerController : MonoBehaviour
     void Update()
     {
         // AIM
-        target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
+        target = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
         Crosshair.transform.position = new Vector2(target.x, target.y);
         Vector3 diff = target - PlayerHandsAIM.transform.position;
+        diff.Normalize();
         float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg - 90;
         PlayerHandsAIM.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
         if(PlayerHandsAIM.transform.localEulerAngles.z < 180f)
@@ -65,7 +72,7 @@ public class MSV2_PlayerController : MonoBehaviour
             float distance = diff.magnitude;
             Vector2 direction = diff / distance;
             direction.Normalize();
-            fireBullet(direction, rotationZ);
+            Shoot_WP1(direction, rotationZ);
         }
 
         // MOVING
@@ -82,20 +89,22 @@ public class MSV2_PlayerController : MonoBehaviour
         {
             speed = 0;
         }
+
+        // XP Bar refresh
+        MSV2_UIController.instance.XpLoadingBar.fillAmount = currentXP / nextXPAmount;
     }
 
     private void FixedUpdate()
     {
         body.AddForce(new Vector2(horizontal * moveSpeed, vertical * moveSpeed), ForceMode2D.Force);
     }
-    void fireBullet(Vector2 direction, float rotationZ)
+    void Shoot_WP1(Vector2 direction, float rotationZ)
     {
         GameObject b = MSV2_WorldController.instance.Sys_GetPlayerBaseBullet();
         b.SetActive(true);
         b.transform.position = bulletStart.transform.position;
         b.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
         b.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
-        StartCoroutine(b.SetInactiveDelay(1f));
     }
 
     #region HEALTH MANAGEMENT
@@ -111,6 +120,18 @@ public class MSV2_PlayerController : MonoBehaviour
         }
     }
 
+    public void AddToCurrentXP(float _amount)
+    {
+        currentXP += _amount;
+
+        if(currentXP >= nextXPAmount)
+        {
+            currentXP = currentXP - nextXPAmount;
+            currentLevel++;
+            nextXPAmount += 100;
+        }
+
+    }
 
     public float GetBaseDamage
     {

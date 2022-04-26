@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MSV2_EnemyController : MonoBehaviour
 {
@@ -9,12 +10,16 @@ public class MSV2_EnemyController : MonoBehaviour
     public enemyType EnemyType;
     public Transform Player;
     public bool AIEnabled;
+    public float XPAmountToPlayer;
     MSV2_PlayerController playerController;
 
     [Header("Health / Damage / Moving settings")]
     public float moveSpeed;
     public float MaxHealth;
     public float DamageToTake;
+
+    [Header("UI")]
+    public Image HealthBar;
 
     private float health;
     private float minDist = 1;
@@ -25,6 +30,10 @@ public class MSV2_EnemyController : MonoBehaviour
     {
         Collider = GetComponent<CircleCollider2D>();
         health = MaxHealth;
+        if(Player == null)
+        {
+            Player = GameObject.Find("PlayerControllert").transform;
+        }
         playerController = Player.gameObject.GetComponent<MSV2_PlayerController>();
     }
 
@@ -38,13 +47,19 @@ public class MSV2_EnemyController : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, Player.position, moveSpeed * Time.deltaTime);
             }
         }
+
+        RefreshHPBar();
     }
 
     void OnTriggerEnter2D(Collider2D _other)
     {
+        MSV2_BulletController bc;
         if(_other.gameObject.tag == "Player_WP1_Bullet")
         {
             GetDamage(playerController.GetBaseDamage);
+            bc = _other.GetComponent<MSV2_BulletController>();
+            //StartCoroutine(bc.SetToDeadCooldown());
+            _other.gameObject.SetActive(false);
         }
     }
 
@@ -52,16 +67,20 @@ public class MSV2_EnemyController : MonoBehaviour
     {
         if (health != 0)
         {
-            if (health >= _damageValue)
-            {
-                health -= _damageValue;
-            }
-            else
-            {
-                health = 0;
-                gameObject.SetActive(false);
-            }
+            health -= _damageValue;
         }
+
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+            // DIE
+            playerController.AddToCurrentXP(XPAmountToPlayer);
+        }
+    }
+
+    void RefreshHPBar()
+    {
+        HealthBar.fillAmount = health / MaxHealth;
     }
 
     void OnTriggerStay2D(Collider2D _other)
