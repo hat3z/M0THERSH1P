@@ -5,6 +5,7 @@ using UnityEngine;
 public class MSV2_WorldController : MonoBehaviour
 {
     public static MSV2_WorldController instance;
+    public MSV2_PlayerController PlayerController;
     [Header("-- Env / World Settings")]
     public int maxWorldX;
     public int minWorldX;
@@ -22,7 +23,10 @@ public class MSV2_WorldController : MonoBehaviour
     public GameObject P_BaseBulletPrefab;
     public Transform Sys_PBaseBulletParent;
     public float p_baseBulletPoolSize;
-    List<GameObject> p_baseBullets = new List<GameObject>();    
+    List<GameObject> p_baseBullets = new List<GameObject>();
+
+    [Header("-- System / Spawning --")]
+    public CircleCollider2D PlayerSpawnBound;
 
     void Awake()
     {
@@ -101,5 +105,21 @@ public class MSV2_WorldController : MonoBehaviour
         Vector3 result = new Vector3(randomSize, randomSize, randomSize);
         return result;
     }
+
+    // ENEMY SPAWNING BASED BY THE SPAWNINGBOUND
+
+
+    public Vector2 GetRandomPosInSpawnBound()
+    {
+        Vector2 center = PlayerSpawnBound.transform.position;
+        float radius = PlayerSpawnBound.radius;
+        float ang = Random.value * 360;
+        Vector2 pos;
+        pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
+        pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
+        return pos;
+    }
+
+    // ENEMY SPAWNING BASED BY THE SPAWNINGBOUND
 
 }

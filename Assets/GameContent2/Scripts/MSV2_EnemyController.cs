@@ -8,7 +8,7 @@ public class MSV2_EnemyController : MonoBehaviour
     public enum enemyType { Tier1, Tier2, Tier3};
     [Header("Common settings")]
     public enemyType EnemyType;
-    public Transform Player;
+    Transform Player;
     public bool AIEnabled;
     public float XPAmountToPlayer;
     MSV2_PlayerController playerController;
@@ -32,7 +32,7 @@ public class MSV2_EnemyController : MonoBehaviour
         health = MaxHealth;
         if(Player == null)
         {
-            Player = GameObject.Find("PlayerControllert").transform;
+            Player = GameObject.Find("PlayerController").transform;
         }
         playerController = Player.gameObject.GetComponent<MSV2_PlayerController>();
     }
@@ -56,7 +56,7 @@ public class MSV2_EnemyController : MonoBehaviour
         MSV2_BulletController bc;
         if(_other.gameObject.tag == "Player_WP1_Bullet")
         {
-            GetDamage(playerController.GetBaseDamage);
+            GetDamage(playerController.GetWP1BaseDamage);
             bc = _other.GetComponent<MSV2_BulletController>();
             //StartCoroutine(bc.SetToDeadCooldown());
             _other.gameObject.SetActive(false);
@@ -90,4 +90,22 @@ public class MSV2_EnemyController : MonoBehaviour
             playerController.GetDamage(DamageToTake);
         }
     }
+
+    public void SetupForSpawn()
+    {
+        health = MaxHealth;
+    }
+
+    public bool IsAlive()
+    {
+        if (health <= 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
 }

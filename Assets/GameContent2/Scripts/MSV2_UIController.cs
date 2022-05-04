@@ -12,7 +12,7 @@ public class MSV2_UIController : MonoBehaviour
     [Header("Player")]
     public Image XpLoadingBar;
     public TextMeshProUGUI XpLevelLabel;
-
+    public Image HealthBar;
     void Awake()
     {
         if(instance == null)

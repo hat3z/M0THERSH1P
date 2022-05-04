@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MSV2_PlayerController : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class MSV2_PlayerController : MonoBehaviour
     private float nextXPAmount = 50; // Step in xp system.
     public int currentLevel = 1;
 
-
     [Header("Character movement")]
     public float moveSpeed = 20.0f;
 
@@ -21,6 +21,7 @@ public class MSV2_PlayerController : MonoBehaviour
     public facing Facing;
     public GameObject Crosshair;
     public GameObject PlayerHandsAIM;
+
     [Header("Weapons")]
     public GameObject WP1_BulletPrefab;
     public GameObject bulletStart;
@@ -90,8 +91,17 @@ public class MSV2_PlayerController : MonoBehaviour
             speed = 0;
         }
 
+        // HP Bar refresh
+        MSV2_UIController.instance.HealthBar.fillAmount = health / maxHealth;
+
         // XP Bar refresh
         MSV2_UIController.instance.XpLoadingBar.fillAmount = currentXP / nextXPAmount;
+
+        // HP regen
+        if(health <= maxHealth)
+        {
+            health += PlayerModifiers.healthRegenMod * Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
@@ -133,7 +143,7 @@ public class MSV2_PlayerController : MonoBehaviour
 
     }
 
-    public float GetBaseDamage
+    public float GetWP1BaseDamage
     {
         get
         {
