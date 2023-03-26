@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class MSV2_SpawnController : MonoBehaviour
 {
+    public bool CreatePoolOnly; // Creating only the Enemies pool
+
     [Header("T1_Enemy Settings")]
     public GameObject T1_EnemyPrefab;
     public Transform T1_EnemyPool;
     int T1_EnemySpawnCount = 5;
     public int maxT1Enemy;
     public int currentT1Enemy;
-    private float T1_spawnInterval = 10f;
+    private float T1_spawnInterval = 10f; // seconds
 
     [Header("T2_Enemy Settings")]
     public GameObject T2_EnemyPrefab;
@@ -18,7 +20,7 @@ public class MSV2_SpawnController : MonoBehaviour
     int T2_EnemySpawnCount = 2;
     public int maxT2Enemy;
     public int currentT2Enemy;
-    private float T2_spawnInterval = 15f;
+    private float T2_spawnInterval = 15f; // seconds
 
 
     // Start is called before the first frame update
@@ -36,7 +38,10 @@ public class MSV2_SpawnController : MonoBehaviour
             t1e.gameObject.SetActive(false);
             t1e.transform.SetParent(T1_EnemyPool);
         }
-        StartCoroutine(Spawn_T1Enemies());
+        if(!CreatePoolOnly)
+        {
+            StartCoroutine(Spawn_T1Enemies());
+        }
     }
 
     void Create_T2Pool()
@@ -47,7 +52,10 @@ public class MSV2_SpawnController : MonoBehaviour
             t1e.gameObject.SetActive(false);
             t1e.transform.SetParent(T2_EnemyPool);
         }
-        StartCoroutine(Spawn_T2Enemies());
+        if (!CreatePoolOnly)
+        {
+            StartCoroutine(Spawn_T2Enemies());
+        }
     }
 
     IEnumerator Spawn_T1Enemies()

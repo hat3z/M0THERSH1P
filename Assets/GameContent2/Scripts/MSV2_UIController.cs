@@ -13,6 +13,10 @@ public class MSV2_UIController : MonoBehaviour
     public Image XpLoadingBar;
     public TextMeshProUGUI XpLevelLabel;
     public Image HealthBar;
+
+    [Header("Dev Tools")]
+    public TextMeshProUGUI MovementSpeedValue;
+
     void Awake()
     {
         if(instance == null)
