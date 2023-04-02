@@ -109,14 +109,15 @@ public class MSV2_WorldController : MonoBehaviour
     // ENEMY SPAWNING BASED BY THE SPAWNINGBOUND
 
 
-    public Vector2 GetRandomPosInSpawnBound()
+    public Vector3 GetRandomPosInSpawnBound()
     {
-        Vector2 center = PlayerSpawnBound.transform.position;
+        Vector3 center = PlayerSpawnBound.transform.position;
         float radius = PlayerSpawnBound.radius;
         float ang = Random.value * 360;
-        Vector2 pos;
+        Vector3 pos = Vector3.zero;
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
         pos.y = center.y + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
+        pos.z = 0;
         return pos;
     }
 

@@ -7,14 +7,16 @@ public class MSV2_SpawnController : MonoBehaviour
     public bool CreatePoolOnly; // Creating only the Enemies pool
 
     [Header("T1_Enemy Settings")]
-    public GameObject T1_EnemyPrefab;
-    public Transform T1_EnemyPool;
-    int T1_EnemySpawnCount = 5;
-    public int maxT1Enemy;
+    public bool SpawnT1Enemies; // Spawn T1 enemies at startup?
+    public GameObject T1_EnemyPrefab; // The T1 enemy prefab
+    public Transform T1_EnemyPool; // The pool where we storing all T1 enemies in the world.
+    int T1_EnemySpawnCount = 5; // How many T1 enemies can spawn per SpawnPeriod
+    public int maxT1Enemy; // Setup here how many enemies can spawn in the POOL
     public int currentT1Enemy;
     private float T1_spawnInterval = 10f; // seconds
 
     [Header("T2_Enemy Settings")]
+    public bool SpawnT2Enemies;
     public GameObject T2_EnemyPrefab;
     public Transform T2_EnemyPool;
     int T2_EnemySpawnCount = 2;
@@ -38,7 +40,7 @@ public class MSV2_SpawnController : MonoBehaviour
             t1e.gameObject.SetActive(false);
             t1e.transform.SetParent(T1_EnemyPool);
         }
-        if(!CreatePoolOnly)
+        if(!CreatePoolOnly && SpawnT1Enemies)
         {
             StartCoroutine(Spawn_T1Enemies());
         }
@@ -52,7 +54,7 @@ public class MSV2_SpawnController : MonoBehaviour
             t1e.gameObject.SetActive(false);
             t1e.transform.SetParent(T2_EnemyPool);
         }
-        if (!CreatePoolOnly)
+        if (!CreatePoolOnly && SpawnT2Enemies)
         {
             StartCoroutine(Spawn_T2Enemies());
         }

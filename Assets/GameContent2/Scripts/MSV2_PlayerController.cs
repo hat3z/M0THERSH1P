@@ -1,33 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MSV2_PlayerController : MonoBehaviour
 {
     #region -- Character Health --
-    [Header("Character health")]
-    public float maxHealth;
+    [Header("Character vital")]
     private float health;
     public float currentXP;
     private float nextXPAmount = 50; // Step in xp system.
     public int currentLevel = 1;
     #endregion -- Character Health --
 
-    [Header("Character movement")]
-    public float moveSpeed = 20.0f;
+    #region -- Character default parameters --
+    [Header("Default player parameters")]
+    public float defaultStartHealth;
+    public float defaultMoveSpeed = 5f;
+    public float defaultWeapon1Damage;
+    public float defaultWeapon1AttackSpeed = .18f;
+    #endregion -- Character default parameters --
 
+    #region -- Character AIM --
     public enum facing { Left, Right };
     [Header("Character AIM")]
     public facing Facing;
     public GameObject Crosshair;
     public GameObject PlayerHandsAIM;
+    #endregion -- Character AIM --
 
-    [Header("Weapons")]
+    [Header("Weapons------")]
+    #region -- Weapon 1 --
+    [Header("Weapon1")]
     public GameObject WP1_BulletPrefab;
     public GameObject bulletStart;
     public float bulletSpeed = 80f;
+    #endregion -- Weapon 1 --
 
+    [Header("Player Modifiers")]
     public PlayerModifiers PlayerModifiers;
 
     // Moving
@@ -40,14 +51,13 @@ public class MSV2_PlayerController : MonoBehaviour
     float vertical;
 
     // WP1
-    public float fireRate = .18f;
     float nextFire = 0f;
-    public float WP1_BaseDamage;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         Cursor.visible = false;
-        health = maxHealth;
+        health = defaultStartHealth;
     }
 
     void Update()
@@ -71,7 +81,7 @@ public class MSV2_PlayerController : MonoBehaviour
         // SHOOTING
         if (Input.GetMouseButton(0) && Time.time >nextFire)
         {
-            nextFire = Time.time + (fireRate / PlayerModifiers.WP1_fireRateMod);
+            nextFire = Time.time + (defaultWeapon1AttackSpeed / PlayerModifiers.WP1_fireRateMod);
             float distance = diff.magnitude;
             Vector2 direction = diff / distance;
             direction.Normalize();
@@ -83,7 +93,7 @@ public class MSV2_PlayerController : MonoBehaviour
         vertical = Input.GetAxisRaw("Vertical");
         if (vertical != 0 || horizontal != 0)
         {
-            if (speed < (moveSpeed * PlayerModifiers.moveSpeedMod))
+            if (speed < (defaultMoveSpeed * PlayerModifiers.moveSpeedMod))
             {
                 speed += acceleration * Time.deltaTime;
             }
@@ -95,13 +105,13 @@ public class MSV2_PlayerController : MonoBehaviour
         #endregion -- ACCELERATION --
 
         // HP Bar refresh
-        MSV2_UIController.instance.HealthBar.fillAmount = health / maxHealth;
+        MSV2_UIController.instance.HealthBar.fillAmount = health / defaultStartHealth;
 
         // XP Bar refresh
         MSV2_UIController.instance.XpLoadingBar.fillAmount = currentXP / nextXPAmount;
 
         // HP regen
-        if(health <= maxHealth)
+        if(health <= defaultStartHealth)
         {
             health += PlayerModifiers.healthRegenMod * Time.deltaTime;
         }
@@ -111,7 +121,7 @@ public class MSV2_PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        currentMoveSpeed = moveSpeed * PlayerModifiers.moveSpeedMod;
+        currentMoveSpeed = defaultMoveSpeed * PlayerModifiers.moveSpeedMod;
         body.AddForce(new Vector2(horizontal * currentMoveSpeed, vertical * currentMoveSpeed), ForceMode2D.Force);
 
         #region DEV TOOLS 
@@ -158,7 +168,7 @@ public class MSV2_PlayerController : MonoBehaviour
     {
         get
         {
-            return WP1_BaseDamage + PlayerModifiers.WP1_damageMod;
+            return defaultWeapon1Damage + PlayerModifiers.WP1_damageMod;
         }
     }
 
