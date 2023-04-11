@@ -1,5 +1,0 @@
-- WP1 Attack speed increase (defaultWeapon1AttackSpeed + 0.15)
-- HP increase (defaultStartHealth + 15)
-- Move speed increase (defaultMoveSpeed + 0.5)
-- Detonate on kill 
-- Slow enemy on hit (enemy movespeed - 0.5)

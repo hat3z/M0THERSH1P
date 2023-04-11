@@ -6,6 +6,7 @@ public class MSV2_WorldController : MonoBehaviour
 {
     public static MSV2_WorldController instance;
     public MSV2_PlayerController PlayerController;
+    public MSV2_ItemDatabase ItemDatabase;
     [Header("-- Env / World Settings")]
     public int maxWorldX;
     public int minWorldX;
@@ -20,10 +21,14 @@ public class MSV2_WorldController : MonoBehaviour
     private float starPoolSize = 3000;
 
     [Header("-- System / Pooling")]
-    public GameObject P_BaseBulletPrefab;
-    public Transform Sys_PBaseBulletParent;
-    public float p_baseBulletPoolSize;
+    public GameObject P_WP1BulletPrefab;
+    public Transform Sys_PWP1BulletParent;
     List<GameObject> p_baseBullets = new List<GameObject>();
+
+    [Space(5)]
+    public GameObject Tier3EnemyBulletPrefab;
+    public Transform Sys_Tier3EnemyBulletParent;
+    List<GameObject> t3E_bulletsPool = new List<GameObject>();
 
     [Header("-- System / Spawning --")]
     public CircleCollider2D PlayerSpawnBound;
@@ -40,24 +45,35 @@ public class MSV2_WorldController : MonoBehaviour
     void Start()
     {
         Env_GenerateStars();
-        Sys_GeneratePlayerBaseBulletPool();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Sys_GenerateAllBulletsPool();
     }
 
     // SYS
-    void Sys_GeneratePlayerBaseBulletPool()
+
+    public MSV2_PlayerController GetActivePlayer()
+    {
+        return PlayerController;
+    }
+    public PlayerModifiers GetActivePlayerModifiers()
+    {
+        return PlayerController.PlayerModifiers;
+    }
+
+    void Sys_GenerateAllBulletsPool()
     {
         GameObject b;
-        for (int i = 0; i < p_baseBulletPoolSize; i++)
+        for (int i = 0; i < ItemDatabase.PlayerBaseBulletPool; i++)
         {
-            b = Instantiate(P_BaseBulletPrefab);
+            b = Instantiate(P_WP1BulletPrefab);
             b.gameObject.SetActive(false);
-            b.transform.SetParent(Sys_PBaseBulletParent);
+            b.transform.SetParent(Sys_PWP1BulletParent);
+            p_baseBullets.Add(b);
+        }
+        for (int i = 0; i < ItemDatabase.Tier3EnemyBulletPool; i++)
+        {
+            b = Instantiate(Tier3EnemyBulletPrefab);
+            b.gameObject.SetActive(false);
+            b.transform.SetParent(Sys_Tier3EnemyBulletParent);
             p_baseBullets.Add(b);
         }
     }
@@ -69,6 +85,18 @@ public class MSV2_WorldController : MonoBehaviour
             if(!p_baseBullets[i].activeSelf)
             {
                 return p_baseBullets[i];
+            }
+        }
+        return null;
+    }
+
+    public GameObject Sys_GetTier3EnemyBullet()
+    {
+        for (int i = 0; i < t3E_bulletsPool.Count; i++)
+        {
+            if(!t3E_bulletsPool[i].activeSelf)
+            {
+                return t3E_bulletsPool[i];
             }
         }
         return null;

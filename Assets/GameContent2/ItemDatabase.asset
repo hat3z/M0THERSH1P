@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150d654ed4f6a5446a05ac49a9a8833d, type: 3}
+  m_Name: ItemDatabase
+  m_EditorClassIdentifier: 
+  PlayerBaseBulletPool: 200
+  Tier3EnemyBulletPool: 100
+  Tier4EnemyBulletPool: 100
+  Tier5EnemyBulletPool: 200
+  Tier3EnemyProjectileDamage: 3
+  Tier4EnemyProjectileDamage: 3
+  Tier5EnemyProjectileDamage: 5
+  Items:
+  - Name: Attack Speeder
+    ItemData:
+      ItemRarity: 0
+      ItemType: 0
+    Icon: {fileID: 0}
+    ItemDescription: Increase attack speed.
+  - Name: Space Wars
+    ItemData:
+      ItemRarity: 0
+      ItemType: 1
+    Icon: {fileID: 0}
+    ItemDescription: Increase Weapon 1 Base Damage.
+  - Name: Add Some Health Please
+    ItemData:
+      ItemRarity: 0
+      ItemType: 2
+    Icon: {fileID: 0}
+    ItemDescription: Add +15 to Max Health.
+  - Name: I Am Speed
+    ItemData:
+      ItemRarity: 0
+      ItemType: 3
+    Icon: {fileID: 0}
+    ItemDescription: Increase movement speed.
+  - Name: Atom For The Beasts
+    ItemData:
+      ItemRarity: 0
+      ItemType: 4
+    Icon: {fileID: 0}
+    ItemDescription: Increase movement speed.
+  - Name: Slow Down Bro
+    ItemData:
+      ItemRarity: 1
+      ItemType: 5
+    Icon: {fileID: 0}
+    ItemDescription: Increase movement speed.
+  - Name: Circular Hug
+    ItemData:
+      ItemRarity: 5
+      ItemType: 6
+    Icon: {fileID: 0}
+    ItemDescription: Increase movement speed.
+  - Name: Revive Me
+    ItemData:
+      ItemRarity: 2
+      ItemType: 7
+    Icon: {fileID: 0}
+    ItemDescription: Increase movement speed.
+  EnemyPoolTable:
+    T1PoolCount: 150
+    T2PoolCount: 100
+    T3PoolCount: 100
+    T4PoolCount: 100
+    T5PoolCount: 100
+  EnemySpawnTables:
+  - DisplayName: Stage 1
+    GameStage: 2
+    EnemyStartupTable:
+      T1StartupCount: 40
+      T2StartupCount: 40
+      T3StartupCount: 0
+      T4StartupCount: 0
+      T5StartupCount: 0
+    MaxT1EnemyCount: 80
+    MaxT2EnemyCount: 80
+    MaxT3EnemyCount: 0
+    MaxT4EnemyCount: 0
+    MaxT5EnemyCount: 0
+  - DisplayName: Stage 2
+    GameStage: 3
+    EnemyStartupTable:
+      T1StartupCount: 30
+      T2StartupCount: 40
+      T3StartupCount: 50
+      T4StartupCount: 0
+      T5StartupCount: 0
+    MaxT1EnemyCount: 30
+    MaxT2EnemyCount: 50
+    MaxT3EnemyCount: 50
+    MaxT4EnemyCount: 0
+    MaxT5EnemyCount: 0
+  - DisplayName: Stage 3
+    GameStage: 4
+    EnemyStartupTable:
+      T1StartupCount: 0
+      T2StartupCount: 0
+      T3StartupCount: 0
+      T4StartupCount: 0
+      T5StartupCount: 0
+    MaxT1EnemyCount: 0
+    MaxT2EnemyCount: 0
+    MaxT3EnemyCount: 0
+    MaxT4EnemyCount: 0
+    MaxT5EnemyCount: 0
+  - DisplayName: Stage Finale
+    GameStage: 5
+    EnemyStartupTable:
+      T1StartupCount: 20
+      T2StartupCount: 30
+      T3StartupCount: 25
+      T4StartupCount: 20
+      T5StartupCount: 10
+    MaxT1EnemyCount: 0
+    MaxT2EnemyCount: 20
+    MaxT3EnemyCount: 40
+    MaxT4EnemyCount: 40
+    MaxT5EnemyCount: 35

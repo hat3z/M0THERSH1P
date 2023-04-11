@@ -1,0 +1,182 @@
+
+-- GAMEPLAY FULL --
+A játékos célja, hogy összerakja az anyahajója darabjait és elmeneküljön a területről. 
+Ehhez az anyahajó darabjait össze kell szednie (Body, Wings, Turbine)
+Az anyahajó darabjait nyersanyagokból tudja megalkotni. Nyersanyagot űrszemétből
+tud kinyerni, szétlőve azokat. A belőlök hulló loot automatikusan a playerhez adódik
+ha közel megy hozzájuk. 
+Egy darab összerakását megfelelő nyersanyag összegyűjtése után bárhol, a nála található
+fabrikátorral össze tudja rakni. Összerakás után a játékos össze tudja zsugorítani a darabot
+és bekerül a statikus inventoryba. Ha mind a 3 megvan, akkor szintén bárhol nekiállhat a végső összeszerelésnek.
+Siker esetén elkészül az anyahajó és elmenekül a játékos, ez a win condition.
+
+## PLAYER ##
+Weapon1: Alap fegyver, bal click, módosítható, fix
+Weapon2: Választható a játék elején, Circular unlocked, Plasma cutter locked (defeat the game to unlock), jobb click, módosítható
+Ability: Válaszható a játék elején, Invisible unlocked, Q gomb
+Tool: Mining Tool , can mine Rare metal from Asteroids, R gomb, fix
+Prime Slot: felvehető Prime Item, aminek 1 perc a Cooldownja, C gomb
+Aero0 \ Drone Slot: a drone that follows player (little dot) reveal all loot and damaged spaceships, moving asteroids on map for 10 seconds - cooldown 60 sec - fix 
+Fabrikátor: F gomb
+Láda nyitás: E gomb
+
+
+## BODYPARTS ##
+BodyPart resources: 
+-  Metal Scrap - from space debris
+-  Turbine Core - from damaged spaceships (4 can spawn in Stage 2)
+-  Rare Metal - from asteroids
+
+Bodyparts:
+1. Wings - 200 metal scrap - 2 perc tower defense section
+2. Body - 300 metal scrap, 10 rare metal - 3 perc tower defense section
+3. Turbine - 350 metal scrap, 2 turbine core - 4 perc tower defense section
+4. MotherShip: 5 perc tower defense
+
+
+
+## GAMEPLAY FLOW ##
+
+[HIGHRISK ZONE]
+Minden bodypart összerakása után lehet egy HighRisk zone-ba menni, ahol 1 ütes = 1halál van. Viszont több itemet kaphatunk.
+Stage1: 2 tiem, Stage2: 3 item, Stage3: 5 item
+[HIGHRISK ZONE]
+
+- Stage1
+	- Space Junk randomization
+	- Tier1 enemies spawn amíg nem végez a játékos az első Bodypart-al
+	- Tier2 max 30 spawnolhat
+	- Wing bodypart elkészítése . 2 percig védeni kell. (TD Section)
+- Stage2:
+	- Space Junk randomization
+	- Tier 1 Enemies amig nem végez a játékos
+	- Tier 2 Enemies amig nem végez
+	- Tier 3 Enemy max 30 
+	- Body bodypart elkészítése . 3 percig védeni kell. (TD Section)
+- Stage3: 
+	- Space Junk randomization
+	- Tier 1-2-3 Enemies , Elite can spawn
+	- Asterioids spawn (1 aszteroida max 2 rare metalt tartalmaz)
+	- Turbine bodypart elkészítése . 4 percig védeni kell. (TD Section)
+MotherShipAssembly StageFinale:
+	- 5 percig épül, itt ha meg tudom oldani akkor jöhet a patternbe rendeződős enemy boss
+	- Ha kész, game complete
+
+Ship Part Fabricator:
+Ha megvannak a kérdéses összetevők, akkor a játékos bárhol ahol van elindíthatja az összerakást. 
+Ilyenkor egy kör alakú zóna jelenik meg a fabrikátor körül, ez egy shield. Ezen belül a játékos nem sebződik viszont a sheidlnek
+van HP-ja. 
+
+-- Gameplay --
+
+Item Base leírás: 
+Tier1-Tier2-Tier3 itemek csak stackelődni tudnak.
+WP2 és Ability upgradek Level Up-ból jön, választani kell 3-ból, attól függően, hogy melyik aktív a játékosnak.
+Lehet majd olyan, hogy 2-t enged választani, ezt el kell dönteni hogy mikor engedje (10x kombó? random? + My Lucky Day)
+
+ITEMEK - inventory slot
+
+\\ TIER1
+- WP1 Attack speed increase (defaultWeapon1AttackSpeed + 0.15) - tier1
+- WP1 Base Damage increase (defaultWeapon1BaseDamage + 0.15) - tier 1 
+- HP increase (defaultStartHealth + 15) - tier 1
+- Move speed increase (defaultMoveSpeed + 0.5) / tier 1 | name: Solar Flares
+
+\\ TIER2
+- Detonate on kill (item damage ++) / tier 2 
+- My Lucky Day - let pick another one WP2 or Ability upgrade (kombinálható az upgrade pickelésnél való +1 lehetőséggel, tehát lehet akár 3-at is választani)
+- Slow enemy on hit (enemy movespeed - 0.5) / tier 2
+- Pimp my drone: reveal drone scan time + 3 sec 
+
+\\ TIER3
+- Fabricator Speed Pill: fabricator speed /2 , shield / 2 / tier 3
+- What prime is it? : decrease Prime cooldown time by 5%  
+- Holy Drone - get an extra life by Aero0
+
+\\ PRIME
+- Nanobot Swarm Launcher - a crosshair körül megjelenik egy rakás nanobot amik sebzik a közelben lévő ellenfeleket, 30 másodpercig cooldown 120 sec/ PRIME
+- Gravity Well Generator - a crosshair pontjába szívja az ellenfeleket de nem teljesen, csak nem tudnak elmenni a területről (kör alakú terület) 20 másodperc, cooldown 120 sec/ PRIME
+- Gravitational Antimagnet - a crosshair körül ellöki az ellenfeleket, cooldown 120 sec 20 másodperc, Prime
+
+
+
+## WORLD ITEMS ##
+Space Junk - max 25 metal scrap (spawn per stage, BodyPartMaxResource1Count / 30) |can't damage player | can spawn any Stage |shoot with any weapon
+Damaged Spaceship - max 4 db, max 1 Turbine Core | can'd damage player | can spawn on Asteroid Field (Stage2 or Stage3) (where max asteroid between 5m = 5)| 
+Asteroid Static - max 2 rare metal| spawn max 30 on Stage 2 and Stage 3| can't damage player |shoot with any weapon
+Asteroid Moving - max 3 rare metal| spawn far from the player| can damage player |spawn on Stage2 and Stage3 |can shoot with any weapon |quickly moving towards to the player damaging PlayerHealth/2
+Astrochest  - drop tier 1-2-3 item |drop from enemies |max 6 each stage 
+Black Hole Cache - drop Prime item | drops Stage2\Stage3 max (1-1 each stage)
+
+
+
+## PICK UP ITEMS ## 
+#Weapon2 Slot
+- plasma cutier (plasma cutter mint a dead spaceben)
+hosszú vonal alakban lő egy lövedéket a két pont között sebez
+	- leveling opt1: WP2 Base Damage ++ /tier2
+	- leveling opt2: nagyobb hosszúságú a vonal 
+	- leveling opt3: gyorsabb cooldown
+	- cooldown: 5sec
+- circular destroyer (kör alakban kilő 6 projectilet) - 3mp cooldown
+	- leveling opt1: WP2 Base Damage ++ / tier 2
+	- leveling opt2: Area damage (projectile size ++)
+	- leveling opt3: gyorsabb cooldown
+	- cooldown: 5 sec
+
+#Ability Slot
+- Wormhole Travel (használásnál lelassul az idő (3 sec), kijelölt helyre teleportálja a játékos)
+	- Cooldown: 10 sec
+	- leveling opt1: damagel a beékrezési pontra (ability damage + 1)
+	- több lassulási idő használatkor (+0.5 sec)
+- Cloaking Device (használatnál a játékos láthatatlan lesz, 5 sec)
+	- cooldown: 10 sec
+	- leveling opt1: damagel használatkor
+	- leveling opt2: használat + 3 sec
+- Holographic Projection (használatnál létrehoz egy klónt a játékosból (5sec), aki nem lő, hp-ja annyi mint a playernek)
+	- ez lesz a MAIN TARGET az összes képernyőn lécő ellenfélnek
+	- cooldown: 10 seconds
+	- leveling opt1: damage a klón halálakor
+	- leveling opt2: klóne lifetime + 2 sec
+
+## ENEMIES ##
+Kör alakú ellenfelek, akiken a diagonális alakzatok jelzik hogy milyen TIER-be tartoznak.
+
+TIER1 Enemy: (enemy1 kép a mothership mappában csak a vizszintes vonalak nélkül)
+- Spawn on Stage 1 Stage2 and Stage3
+- not shooting
+- move towards to player
+- low hp (100)
+
+TIER2 Enemy: (enemy2 kép a mothership mappában)
+- Spawn on Stage 1 Stage2 and Stage3
+- not shooting
+- move towards to player
+- lot hp (200)
+- bigger
+
+TIER3 Enemy: (enemy1 kép a mothership mappában csak 1 vizszintes vonallal, innen lő)
+- Spawn on Stage2 and Stage3
+- shoot to player (every 3 sec / 1 projectile with fire rate / from 1 shoot point)
+- stay distance from player (10 m?)
+- low hp (100)
+
+TIER4 Enemy: (enemy2 kép a mothership mappában)
+- Spawn on Stage2 and Stage3
+- shoot to player (every 3 sec / 1 projectile with fire rate/ from 1 shoot point)
+- has shield (50)
+- stay distance (10m)
+- low hp (100)
+
+TIER5 Enemy: (enemy3 kép a mothership mappában a 4 kis alakazat a kör élén, ezekből lő)
+- Spawn on Stage3
+- shoot to player (every 3 sec / 1 projectile with fire rate / from 4 shoot point)
+- stay distance
+- lövés előtt a közepén lévő diagonal alakzat feltöültődik és lő egyet az első pontból, forog, lő, stb teljesen az utolsó lövő pontig, újratölt, 10mp)
+- low hp (100)
+
+TIER6 Enemy: (enemy4 kép a mothership mappában a 4 kis alakazat a kör élén, ezekből lő) - !!!! NEM BIZTOS HOGY 1.0-ba kerül be !!!!
+- shoot to player line shoot (mint a Risk of rain 2-ben a végső boss körcikkezős támadása)
+- stay distance
+- lövés előtt a közepén lévő diagonal alakzat feltöültődik és lő egyet az első pontból, forog, lő, stb teljesen az utolsó lövő pontig, újratölt, 10mp)
+- low hp (100)

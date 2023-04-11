@@ -81,7 +81,7 @@ public class MSV2_PlayerController : MonoBehaviour
         // SHOOTING
         if (Input.GetMouseButton(0) && Time.time >nextFire)
         {
-            nextFire = Time.time + (defaultWeapon1AttackSpeed / PlayerModifiers.WP1_fireRateMod);
+            nextFire = Time.time + (defaultWeapon1AttackSpeed / PlayerModifiers.WP1_AttackSpeedMod);
             float distance = diff.magnitude;
             Vector2 direction = diff / distance;
             direction.Normalize();
@@ -168,7 +168,7 @@ public class MSV2_PlayerController : MonoBehaviour
     {
         get
         {
-            return defaultWeapon1Damage + PlayerModifiers.WP1_damageMod;
+            return defaultWeapon1Damage + PlayerModifiers.WP1_DamageMod;
         }
     }
 
@@ -180,9 +180,10 @@ public class PlayerModifiers
 {
     public float healthAddMod;
     public float healthRegenMod;
-    public float WP1_fireRateMod = 1;
-    public float WP1_damageMod;
-    public float WP2_fireRateMod;
+    public float WP1_AttackSpeedMod = 1;
+    public float WP1_DamageMod;
     public float moveSpeedMod;
-    public float armorAreaMod;
+    public float fabricatorSpeed;
+    public MSV2_ItemDatabase.PlayerWeapon2SlotBase Weapon2Slot;
+    public MSV2_ItemDatabase.PlayerAbilitySlot AbilitySlot;
 }
