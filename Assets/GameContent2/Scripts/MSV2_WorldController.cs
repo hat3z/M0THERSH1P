@@ -74,7 +74,7 @@ public class MSV2_WorldController : MonoBehaviour
             b = Instantiate(Tier3EnemyBulletPrefab);
             b.gameObject.SetActive(false);
             b.transform.SetParent(Sys_Tier3EnemyBulletParent);
-            p_baseBullets.Add(b);
+            t3E_bulletsPool.Add(b);
         }
     }
 
@@ -139,8 +139,8 @@ public class MSV2_WorldController : MonoBehaviour
 
     public Vector3 GetRandomPosInSpawnBound()
     {
-        Vector3 center = PlayerSpawnBound.transform.position;
-        float radius = PlayerSpawnBound.radius;
+        Vector3 center = Vector3.zero;
+        float radius = 45;
         float ang = Random.value * 360;
         Vector3 pos = Vector3.zero;
         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);

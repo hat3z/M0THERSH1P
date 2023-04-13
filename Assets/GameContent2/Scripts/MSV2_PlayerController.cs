@@ -115,8 +115,6 @@ public class MSV2_PlayerController : MonoBehaviour
         {
             health += PlayerModifiers.healthRegenMod * Time.deltaTime;
         }
-
-
     }
 
     private void FixedUpdate()
@@ -169,6 +167,29 @@ public class MSV2_PlayerController : MonoBehaviour
         get
         {
             return defaultWeapon1Damage + PlayerModifiers.WP1_DamageMod;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D _other)
+    {        
+        if (_other.gameObject.tag == "EnemyBullet_1")
+        {
+            Debug.Log("ASD");
+            GetDamage(MSV2_WorldController.instance.ItemDatabase.Tier3EnemyProjectileDamage);
+            _other.gameObject.SetActive(false);
+        }
+        //else if(_other.gameObject.tag == "EnemyBullet_2")
+        //{
+
+        //}
+    }
+
+
+    void OnTriggerStay2D(Collider2D _other)
+    {
+        if (_other.gameObject.tag == "EnemyTag")
+        {
+            GetDamage(MSV2_WorldController.instance.ItemDatabase.Tier1EnemyDamage);
         }
     }
 

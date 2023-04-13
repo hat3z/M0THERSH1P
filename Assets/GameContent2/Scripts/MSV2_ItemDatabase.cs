@@ -14,6 +14,8 @@ public class MSV2_ItemDatabase : ScriptableObject
     public int Tier5EnemyBulletPool;
 
     [Header("Enemy Damages by Tier")]
+    public float Tier1EnemyDamage;
+    public float Tier2EnemyDamage;
     public float Tier3EnemyProjectileDamage;
     public float Tier4EnemyProjectileDamage;
     public float Tier5EnemyProjectileDamage;

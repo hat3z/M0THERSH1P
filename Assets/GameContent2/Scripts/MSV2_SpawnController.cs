@@ -16,6 +16,16 @@ public class MSV2_SpawnController : MonoBehaviour
         {
             spawnController.CreatePool();
         }
+        MSV2_GameController.Instance.SwitchGameStage("Menu");
+    }
+
+    public void Spawn_Tier1_StartupEnemies()
+    {
+        Debug.Log("Spawning tier 1 enemies...");
+        foreach (EnemySpawnController spawnController in EnemySpawnControllers)
+        {
+            spawnController.Spawn_Startup();
+        }
     }
 
     int GetEnemySpawnCountByPlayerLevel(int _spawnCount)
@@ -61,42 +71,45 @@ public class MSV2_SpawnController : MonoBehaviour
         public void Spawn_Startup()
         {
             MSV2_ItemDatabase.EnemyStartupSpawnTable esst = MSV2_WorldController.instance.ItemDatabase.GetEnemyStartupPoolTable(MSV2_GameController.Instance.GameStage);
+            Debug.Log("Selected Table: " +  esst.T1StartupCount);
             List<MSV2_EnemyController> enemiesReady = new List<MSV2_EnemyController>();
             List<MSV2_EnemyController> allEnemiesList = new List<MSV2_EnemyController>();
-            if (MSV2_GameController.Instance.GameStage == MSV2_GameController.gameStage.Stage1)
+            if (!startupSpawnCreated && poolCreated)
             {
-                if (!startupSpawnCreated && poolCreated)
+                switch (Type)
                 {
-                    switch(Type)
-                    {
-                        case MSV2_EnemyController.enemyType.Tier1:
-                            enemiesReady = GetEnemiesFromPool(esst.T1StartupCount);
-                            allEnemiesList.AddRange(enemiesReady);
-                            break;
-                        case MSV2_EnemyController.enemyType.Tier2:
-                            enemiesReady = GetEnemiesFromPool(esst.T2StartupCount);
-                            allEnemiesList.AddRange(enemiesReady);
-                            break;
-                        case MSV2_EnemyController.enemyType.Tier3:
-                            enemiesReady = GetEnemiesFromPool(esst.T3StartupCount);
-                            allEnemiesList.AddRange(enemiesReady);
-                            break;
-                        case MSV2_EnemyController.enemyType.Tier4:
-                            enemiesReady = GetEnemiesFromPool(esst.T4StartupCount);
-                            allEnemiesList.AddRange(enemiesReady);
-                            break;
-                        case MSV2_EnemyController.enemyType.Tier5:
-                            enemiesReady = GetEnemiesFromPool(esst.T5StartupCount);
-                            allEnemiesList.AddRange(enemiesReady);
-                            break;
-                    }
-                    for (int i = 0; i < allEnemiesList.Count; i++)
-                    {
-                        allEnemiesList[i].gameObject.SetActive(true);
-                        allEnemiesList[i].transform.position = MSV2_WorldController.instance.GetRandomPosInSpawnBound();
-                    }
-                    startupSpawnCreated = true;
+                    case MSV2_EnemyController.enemyType.Tier1:
+                        Debug.Log("Tier: " + Type.ToString());
+
+                        enemiesReady = GetEnemiesFromPool(esst.T1StartupCount);
+                        Debug.Log(enemiesReady.Count);
+                        allEnemiesList.AddRange(enemiesReady);
+                        break;
+                    case MSV2_EnemyController.enemyType.Tier2:
+                        enemiesReady = GetEnemiesFromPool(esst.T2StartupCount);
+                        allEnemiesList.AddRange(enemiesReady);
+                        break;
+                    case MSV2_EnemyController.enemyType.Tier3:
+                        enemiesReady = GetEnemiesFromPool(esst.T3StartupCount);
+                        allEnemiesList.AddRange(enemiesReady);
+                        break;
+                    case MSV2_EnemyController.enemyType.Tier4:
+                        enemiesReady = GetEnemiesFromPool(esst.T4StartupCount);
+                        allEnemiesList.AddRange(enemiesReady);
+                        break;
+                    case MSV2_EnemyController.enemyType.Tier5:
+                        enemiesReady = GetEnemiesFromPool(esst.T5StartupCount);
+                        allEnemiesList.AddRange(enemiesReady);
+                        break;
                 }
+                Debug.Log("Available enemies count: " + allEnemiesList.Count);
+                for (int i = 0; i < allEnemiesList.Count; i++)
+                {
+                    allEnemiesList[i].gameObject.SetActive(true);
+                    allEnemiesList[i].transform.position = MSV2_WorldController.instance.GetRandomPosInSpawnBound();
+                    Debug.Log("All Enemies spawn finished");
+                }
+                startupSpawnCreated = true;
             }
         }
         List<MSV2_EnemyController> GetEnemiesFromPool(int _spawnCount)
@@ -109,7 +122,7 @@ public class MSV2_SpawnController : MonoBehaviour
                 if (spCount != 0)
                 {
                     ec = Pool.GetChild(i).GetComponent<MSV2_EnemyController>();
-                    if (!ec.IsAlive())
+                    if (ec.IsAlive())
                     {
                         result.Add(ec);
                         spCount--;

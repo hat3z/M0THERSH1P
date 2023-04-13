@@ -11,7 +11,12 @@ public class MSV2_EnemyController : MonoBehaviour
     public enemyType EnemyType;
     Transform Player;
     public Transform AIMTransform;
+    public Transform BulletStart;
+    public float BulletSpeed;
     public bool AIEnabled;
+    public bool ShootOnTarget; // If false, enemy shoot randomly
+    public bool ShowDebugTargetLine;
+    public float ViewDistance;
     public float XPAmountToPlayer;
     MSV2_PlayerController playerController;
 
@@ -19,17 +24,18 @@ public class MSV2_EnemyController : MonoBehaviour
     public float MoveSpeed; // The base movespeed
     public float MaxHealth;
     public float MaxShield;
-    public float MeleeDamageToPlayer;
-
+    public float FireRate;
+    public float RotateToPlayerSpeed;
     [Header("UI")]
     public Image HealthBar;
 
     // AIMING TO PLAYER
     private float aimSpeed = 1f;
     private Vector3 target;
-
+    private float rotationZ;
+    private float nextFire = 0f;
     // Shooting control
-    private float fireRate;
+
 
     private float health;
     private float followDistanceRandomAddon;
@@ -37,11 +43,6 @@ public class MSV2_EnemyController : MonoBehaviour
     private float waitingTime;
     private bool isMoving;
     private CircleCollider2D Collider;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     public void StartupInit()
     {
@@ -104,31 +105,68 @@ public class MSV2_EnemyController : MonoBehaviour
         {
             if (AIMTransform != null)
             {
-                target = new Vector3(Player.transform.position.x, Player.transform.position.y, 0);
-                Vector3 diff = target - AIMTransform.transform.position;
-                diff.Normalize();
-                float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg + 90;
-                AIMTransform.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+                Vector2 difference = Player.position - AIMTransform.position;
+                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg + 90;
+                Quaternion rot = Quaternion.Euler(0, 0, rotationZ);
+                AIMTransform.rotation = Quaternion.Lerp(AIMTransform.rotation, rot, RotateToPlayerSpeed * Time.deltaTime);
+                RaycastHit2D hit = Physics2D.Raycast(BulletStart.position, difference, ViewDistance);
+                if (ShowDebugTargetLine)
+                {
+                    Debug.DrawRay(BulletStart.position, difference.normalized * ViewDistance, Color.red);
+                }
+                if(ShootOnTarget)
+                {
+                    if (hit.collider != null)
+                    {
+                        if (hit.collider.tag == "PlayerTag")
+                        {
+                            ShootProjectileOnTarget(difference);
+                        }
+                    }
+
+                }
+                else
+                {
+                    ShootProjectileStraight();
+                }
             }
         }
         #endregion AIM At Player
     }
 
+    void ShootProjectileOnTarget(Vector2 _difference)
+    {
+        if (Time.time > nextFire)
+        {
+            nextFire = Time.time + FireRate;
+            float distance = _difference.magnitude;
+            Vector2 direction = _difference / distance;
+            direction.Normalize();
+            Shoot_Tier3(direction);
+        }
+    }
 
+    void ShootProjectileStraight()
+    {
+        if (Time.time > nextFire)
+        {
+            nextFire = Time.time + FireRate;
+            Vector2 direction =  BulletStart.transform.right;
+            direction.Normalize();
+            Shoot_Tier3(direction);
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D _other)
     {
-        MSV2_BulletController bc;
         if(_other.gameObject.tag == "Player_WP1_Bullet")
         {
             GetDamage(playerController.GetWP1BaseDamage);
-            bc = _other.GetComponent<MSV2_BulletController>();
-            //StartCoroutine(bc.SetToDeadCooldown());
             _other.gameObject.SetActive(false);
         }
     }
 
-    public void GetDamage(float _damageValue)
+    void GetDamage(float _damageValue)
     {
         if (health != 0)
         {
@@ -143,9 +181,13 @@ public class MSV2_EnemyController : MonoBehaviour
         }
     }
 
-    void Shoot_Tier3()
+    void Shoot_Tier3(Vector2 direction)
     {
-
+        GameObject b = MSV2_WorldController.instance.Sys_GetTier3EnemyBullet();
+        b.SetActive(true);
+        b.transform.position = BulletStart.transform.position;
+        b.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+        b.GetComponent<Rigidbody2D>().velocity = direction * BulletSpeed;
     }
 
     void RefreshHPBar()
@@ -153,13 +195,6 @@ public class MSV2_EnemyController : MonoBehaviour
         HealthBar.fillAmount = health / MaxHealth;
     }
 
-    void OnTriggerStay2D(Collider2D _other)
-    {
-        if(_other.gameObject.tag == "PlayerTag")
-        {
-            playerController.GetDamage(MeleeDamageToPlayer);
-        }
-    }
 
     public bool IsAlive()
     {

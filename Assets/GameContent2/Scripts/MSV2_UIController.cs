@@ -9,6 +9,9 @@ public class MSV2_UIController : MonoBehaviour
 
     public MSV2_PlayerController PlayerController;
 
+    [Header("Main Menu")]
+    public GameObject MainMenuContent;
+
     [Header("Player")]
     public Image XpLoadingBar;
     public TextMeshProUGUI XpLevelLabel;

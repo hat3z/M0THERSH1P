@@ -15,10 +15,12 @@ MonoBehaviour:
   PlayerBaseBulletPool: 200
   Tier3EnemyBulletPool: 100
   Tier4EnemyBulletPool: 100
-  Tier5EnemyBulletPool: 200
-  Tier3EnemyProjectileDamage: 3
-  Tier4EnemyProjectileDamage: 3
-  Tier5EnemyProjectileDamage: 5
+  Tier5EnemyBulletPool: 150
+  Tier1EnemyDamage: 1
+  Tier2EnemyDamage: 1
+  Tier3EnemyProjectileDamage: 15
+  Tier4EnemyProjectileDamage: 20
+  Tier5EnemyProjectileDamage: 25
   Items:
   - Name: Attack Speeder
     ItemData:
@@ -78,8 +80,8 @@ MonoBehaviour:
   - DisplayName: Stage 1
     GameStage: 2
     EnemyStartupTable:
-      T1StartupCount: 40
-      T2StartupCount: 40
+      T1StartupCount: 20
+      T2StartupCount: 15
       T3StartupCount: 0
       T4StartupCount: 0
       T5StartupCount: 0

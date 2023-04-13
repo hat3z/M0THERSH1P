@@ -14,6 +14,8 @@ public class MSV2_GameController : MonoBehaviour
     public MSV2_WorldController WorldController;
     public MSV2_UIController UIController;
 
+    // PRIVATES
+    string currentGameStage;
 
     private void Awake()
     {
@@ -25,9 +27,35 @@ public class MSV2_GameController : MonoBehaviour
 
     private void Start()
     {
-        if(GameStage == gameStage.Loading)
+        SwitchGameStage("Loading");
+    }
+
+    public void SwitchGameStage(string _stageName)
+    {
+        switch (_stageName)
         {
-            SpawnController.Create_MainPool();
+            case "Loading":
+                GameStage = gameStage.Loading;
+                SpawnController.Create_MainPool();
+                break;
+            case "Menu":
+                GameStage = gameStage.Menu;
+                UIController.MainMenuContent.gameObject.SetActive(true);
+                break;
+            case "Stage1":
+                GameStage = gameStage.Stage1;
+                UIController.MainMenuContent.gameObject.SetActive(false);
+                SpawnController.Spawn_Tier1_StartupEnemies();
+                break;
+            case "Stage2":
+                GameStage = gameStage.Stage2;
+                break;
+            case "Stage4":
+                GameStage = gameStage.Stage3;
+                break;
+            case "StageFinale":
+                GameStage = gameStage.StageFinale;
+                break;
         }
     }
 
